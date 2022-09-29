@@ -1,0 +1,477 @@
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<style>
+   .row {
+   display: flex;
+   }
+   .row h3 {
+   text-align: center;
+   border-bottom: solid;
+   width: 100%;
+   margin: 0;
+   padding: .5rem 0;
+   border-width: 1px
+   }
+   .row .layout-one div,
+   .row .layout-two div {
+   padding: .5rem;
+   }
+   .layout-one,
+   .layout-two {
+   border: .1rem solid #000;
+   border: solid;
+   border-width: 1px;
+   flex: 1;
+   margin: 0 1rem;
+   }
+   h1 {
+   text-align: center;
+   }
+   [data-testid="crowd-submit"] {
+   display: none;
+   }
+   .border {
+   border: 2px blue dashed;
+   }
+   .mr-0 {
+   margin-right: 0;
+   }
+   .ml-auto {
+   margin-left: auto;
+   font-size: 16px;
+   }
+   .d-block {
+   display: block;
+   }
+   input[type=radio] {
+   margin: 15px;
+   padding: 0;
+   }
+   .details,
+   .summary {
+   margin-left: 10px;
+   color: black;
+   background: #D3D3D3;
+   display: True;
+   }
+   h4 {
+   margin-bottom: 0;
+   }
+   .pad-left {
+   padding-left: 50px;
+   }
+   .writing_error {
+   color: red;
+   }
+   [id^=writing] {
+   border-bottom: 1px solid grey;
+   margin-bottom: 20px;
+   padding-bottom: 20px;
+   }
+   crowd-text-area {
+   width: 100%;
+   margin-top: 4px;
+   }
+   .container-box {
+   padding-top: 5px !important;
+   }
+   .type3 .container-box {
+   padding-top: 20px !important;
+   border: 1px solid black;
+	margin: 22px 10px;
+	position: relative;
+   }
+   .select-box{
+   	position: absolute;
+	top: -15px;
+	left: 0;
+   }
+   .container-box p {
+   margin: 0;
+   }
+</style>
+<crowd-form answer-format="flatten-objects">
+   <!-- Page 1 start -->
+   <div id="Page1" class="page">
+      <h2>Bias in Argumentation Survey</h2>
+      <h5>About this HIT:</h5>
+      <ol>
+         <li><b>Context</b></li>
+         <p>An argument wants to convince you of something. But not all arguments are the same. Some are more one-sided than others in terms of how they try to convince you.</p>
+         <li><b>Objective</b></li>
+         <p><b>Given two different texts (A and B) determine which one is more one-sided</b>. Completely read each line of arguments and think about which one is more biased than the other. (Note: it is possible that both are equally biased or unbiased).</p>
+         <li><b>Disclaimer</b></li>
+         <p><b>You will not be compensated if:</b></p>
+         <ol>
+            <li>You fail reading all the content, the system will detect if you don't read all the content</li>
+            <li>You don't answer all the questions.</li>
+            <li><b>You participated more than one time. You can answer this survey only one time.</b> The focus of the experiment
+               is to get different participants. Therefore, <b>we need unique participants</b>
+               for this study. <b>The system will reject your work if it finds that
+               you already participated</b>. <b>So please to avoid any impact on your approval
+               rating, answer this survey only once</b>.
+            </li>
+         </ol>
+         <br>
+         <li><b>How to answer this survey?</b></li>
+         <p> </p>
+         <ol>
+            <li>The survey is comformed of six parts you will be given several instance topics with two different texts
+               (A and B, left and right side) with several paragraphs each one.
+            </li>
+            <li>Read completely both texts and then proceed to answer all the questions, by selecting the right choice.
+               Your participation will not be approved if you dont read all texts, paragraphs and questions.
+               <b>Your work will be rejected if you answer or participate in this survey more than one time.</b>
+            </li>
+            <li><b>Make sure you read all the texts, and associated paragraphs</b>, so you can answer the the questions.
+            </li>
+         </ol>
+      </ol>
+      <div style="display: none;">
+         <crowd-text-area class="time-elapsed" name="time_elapsed_instructions"></crowd-text-area>
+      </div>
+      <button type="button" style="height:30px;width:100px" class="d-block mr-0 ml-auto btn-next " id="button1" >start</button>
+   </div>
+   <!-- Page 1 end -->
+   <section id="container-pages">
+      <!-- Page type 1 start -->
+      {% for e in arg_data_1 %}
+      <div class="page type1" style="display: none;" id="id_{{e[0]}}">
+         <!--<h3>Part 2/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{e[1]}} </h1>
+               <div class="text-question">
+                  {{e[2]}}
+               </div>
+               <div class="container">
+                  <h4>1. Which text is more one-sided?</h4>
+                  <!-- question_part_question_arg -->
+                  <input type="radio" value="arg_a" name="question1_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="arg_b" name="question1_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="none" name="question1_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question1_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Very sure</input>
+                  <input type="radio" value="val2" name="question1_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question1_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Unsure</input>
+                  <i></i>
+               </div>
+               <h4>3. Please, explain your decision in question 1, why do you consider the selected option is more one-sided? (ideally in more than 6 words)?</h4>
+               <div class="textarea-container fit" style="padding-left: 10px;">
+                  <crowd-text-area name="question1_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                  <div class="writing_error"></div>
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_{{e[0]}}"></crowd-text-area>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next" disabled disabled><b>Next</b></button>
+      </div>
+      {% endfor %}
+      <!-- Page type 1 end -->
+      <!-- Page type 2 start -->
+      {% for e in arg_data_2 %}
+      <div class="page type2" style="display: none;" id="id_{{e[0]}}">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{e[1]}} </h1>
+               {{e[2]}}
+               <div class="container">
+                  <h4>1. Which text has more Pro stances (paragraphs that agree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question2_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="val2" name="question2_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="val3" name="question2_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None, both have the same amount of Pro paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. Which text has more Con stances (paragraphs that disagree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question2_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="val2" name="question2_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="val3" name="question2_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None, both have the same amount of Con paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>3. Which text is more one-sided?</h4>
+                  <input type="radio" value="val1" name="question2_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="val2" name="question2_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="val3" name="question2_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>4. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question2_4_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Very sure</input>
+                  <input type="radio" value="val2" name="question2_4_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question2_4_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Unsure</input>
+                  <i></i>
+               </div>
+               <br>
+               <hr>
+            </section>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next"  disabled><b>Next</b></button>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_{{e[0]}}"></crowd-text-area>
+         </div>
+      </div>
+      {% endfor %}
+      <!-- Page type 2 end -->
+      <!-- Page type 3 start -->
+      <div class="page type3" style="display: none;" id="type3">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+              <h5>Instructions: Below, label the argument bounded in a box by clicking in the "Choose here" option and selecting the label that, in your opinion, best represents the bounded argument (you will not be able to continue if you dont select a label option) ⬇️</h5>
+              <br>
+              <h1> {{arg_data_3[1]}} </h1>
+               {{arg_data_3[2]}}
+               <div class="container">
+                  <h4>1. Which text has more Pro stances (paragraphs that agree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question3_1_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >A</input>
+                  <input type="radio" value="val2" name="question3_1_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >B</input>
+                  <input type="radio" value="val3" name="question3_1_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >None, both have the same amount of Pro paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. Which text has more Con stances (paragraphs that disagree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question3_2_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >A</input>
+                  <input type="radio" value="val2" name="question3_2_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >B</input>
+                  <input type="radio" value="val3" name="question3_2_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >None, both have the same amount of Con paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>3. Which text is more one-sided?</h4>
+                  <input type="radio" value="val1" name="question3_3_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >A</input>
+                  <input type="radio" value="val2" name="question3_3_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >B</input>
+                  <input type="radio" value="val3" name="question3_3_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>4. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question3_4_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >Very sure</input>
+                  <input type="radio" value="val2" name="question3_4_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question3_4_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >Unsure</input>
+                  <i></i>
+               </div>
+               <br>
+               <hr>
+            </section>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next"  disabled><b>Next</b></button>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_id_{{arg_data_3[0]}}"></crowd-text-area>
+         </div>
+      </div>
+      <div class="page type1 repeated" style="display: none;" id="repeated">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{arg_data_1[0][1]}} </h1>
+               <div class="text-question">
+                  {{arg_data_1[0][2]}}
+               </div>
+               <div class="container">
+                  <h4>1. Which text is more one-sided?</h4>
+                  <!-- question_part_question_arg -->
+                  <input type="radio" value="arg_a" name="question1_1_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" required >A</input>
+                  <input type="radio" value="arg_b" name="question1_1_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" required >B</input>
+                  <input type="radio" value="none" name="question1_1_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question1_2_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" required >Very sure</input>
+                  <input type="radio" value="val2" name="question1_2_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question1_2_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" required >Unsure</input>
+                  <i></i>
+               </div>
+               <h4>3. Please, explain your decision in question 1, why do you consider the selected option is more one-sided? (ideally in more than 6 words)?</h4>
+               <div class="textarea-container fit" style="padding-left: 10px;">
+                  <crowd-text-area name="question1_3_repeated{{arg_data_1[0][0]}}" class="answer_question" data-id-question="repeated" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                  <div class="writing_error"></div>
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_repeated"></crowd-text-area>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next"  disabled><b>Next</b></button>
+      </div>
+      <div class="page type1 last" style="display: none;" id="last">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{arg_data_1[0][1]}} </h1>
+               <div class="text-question">
+                  {{arg_data_1[0][2]}}
+               </div>
+               <div class="container">
+                  <h4>1. We believe that A is more biased, are you agree?</h4>
+                  <!-- question_part_question_arg -->
+                  <input type="radio" value="yes" name="question1_1_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" required >Yes</input>
+                  <input type="radio" value="no" name="question1_1_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" required >No</input>
+                  <input type="radio" value="none" name="question1_1_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" required >Unsure</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question1_2_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" required >Very sure</input>
+                  <input type="radio" value="val2" name="question1_2_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question1_2_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" required >Unsure</input>
+                  <i></i>
+               </div>
+               <h4>3. Please, explain your decision in question 1, why do you consider the selected option is more one-sided? (ideally in more than 6 words)?</h4>
+               <div class="textarea-container fit" style="padding-left: 10px;">
+                  <crowd-text-area name="question1_3_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="last" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                  <div class="writing_error"></div>
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed_last" name="time_elapsed_last"></crowd-text-area>
+         </div>
+         <p><b>Submit when you finish answering all the questions ⤵️</b></p>
+      </div>
+   </section>
+</crowd-form>
+<script>
+   $(document).ready(function () {
+      $("input").prop('checked', false);
+      $("select").val('');
+      $(".type1 .select-box").remove();
+      $(".type2 .select-box").remove();
+      window.startTime = moment();
+      shuffleColumns('.layout-one');
+      shuffleColumns('.layout-two');
+      //shufflePages("type1");
+      //shufflePages("type2");
+      //appendLastTypes();
+
+   })
+
+   // Go to next page
+   $(document).on("click", ".btn-next", function () {
+      $(".page").css("display", "none");
+      if ($(this).attr('id') === "button1") {
+         $(this).parent().next("#container-pages").children(".page").first().css("display", "block");
+         window.scrollTo(0, 0);
+      } else {
+         $(this).parent().next(".page").css("display", "block");
+         window.scrollTo(0, 0);
+      }
+      checkTime($(this).parent());
+   });
+
+
+   // Validate that all fields are filled before going to the next page
+   $(document).on("input", ".answer_question", function () {
+      var idQuestion = $(this).data("id-question");
+
+      $("#" + idQuestion + "  button").prop('disabled', true);
+
+      var isAllInpudSelected = $("#" + idQuestion + "  input[type^=radio]:checked ").length === $("#" + idQuestion + " .container").length
+
+      var isValidTextArea = false;
+      var textArea = $('#' + idQuestion).find('crowd-text-area[word-limit=true]');
+
+      if (textArea.length > 0) {
+         var thisMin = 6;
+         var removedBlanks = [];
+         var value = textArea.val();
+         removedBlanks = value ? value.split(/\s+/).filter(Boolean) : [];
+         var wordCount = removedBlanks.length;
+         if (wordCount >= thisMin) {
+            isValidTextArea = true;
+            $(this).parent().children(".writing_error").text("");
+         } else {
+            $(this).parent().children(".writing_error").text("Word count under " + thisMin + ".");
+         }
+      } else {
+         isValidTextArea = true;
+
+      }
+
+      if ($("#" + idQuestion).hasClass("type3")) {
+         var isAllSelectsSelected = true;
+         $("select.answer_question").each(function () {
+            if ($(this).val() == null) {
+               isAllSelectsSelected = false;
+            }
+         });
+         if (isAllInpudSelected && isValidTextArea && isAllSelectsSelected) {
+            //
+            $("#" + idQuestion + "  button").prop('disabled', false);
+         }
+
+      } else {
+         if($("#" + idQuestion).hasClass("last")) {
+            if (isAllInpudSelected && isValidTextArea) {
+               $('[data-testid="crowd-submit"]').css("display", "block");
+
+            }
+         }else {
+            if (isAllInpudSelected && isValidTextArea) {
+               $("#" + idQuestion + "  button").prop('disabled', false);
+
+            }
+         }
+      }
+
+   });
+
+   // Sets elapsed time for the last page
+   $(document).on("submit", "crowd-form", function () {
+      $(".time-elapsed_last").val(diff(startTime, moment()));
+   })
+
+   // Helper for shuffle arrays
+   function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+         const j = Math.floor(Math.random() * (i + 1));
+         [array[i], array[j]] = [array[j], array[i]];
+      }
+   }
+
+   // Shuffle pages/questions
+   function shufflePages(type) {
+      const pages = $("." + type);
+      shuffleArray(pages);
+      $("#container-pages").remove("." + type);
+      $("#container-pages").append(pages);
+   }
+
+
+   // Shuffle paragraphs
+   function shuffleColumns(column) {
+      $(column).each(function () {
+         const elements = $(this).find(".container-box");
+         shuffleArray(elements)
+         $(this).remove(".container-box")
+         $(this).append(elements)
+      })
+   }
+
+   // Sets the time spend in page
+   function checkTime(page) {
+      page.find(".time-elapsed").val(diff(startTime, moment()));
+      startTime = moment();
+   }
+
+   // Helper to get differences between times
+   var diff = (start, end) => moment(end).diff(moment(start), 'seconds');
+   //Append statics types
+   function appendLastTypes() {
+      var lastType = $("#last");
+      var type3 = $(".type3");
+      $("#container-pages").remove("#last");
+      $("#container-pages").remove(".type3");
+      $("#container-pages").append(type3);
+      $("#container-pages").append(lastType);
+   }
+
+</script>

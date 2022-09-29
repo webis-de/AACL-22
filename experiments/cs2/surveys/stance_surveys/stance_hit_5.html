@@ -1,0 +1,2308 @@
+<script src="https://assets.crowd.aws/crowd-html-elements.js">
+</script>
+<script crossorigin="anonymous" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" src="https://code.jquery.com/jquery-3.6.0.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js">
+</script>
+<style>
+ body {
+ width: calc(100vw - 80px);
+ margin: 40px auto 0;
+}
+.row {
+ display: flex;
+}
+.row h3 {
+ text-align: center;
+ border-bottom: solid;
+ width: 100%;
+ margin: 0;
+ padding: .5rem 0;
+ border-width: 1px
+}
+.row .layout-one div,
+.row .layout-two div {
+ padding: .5rem;
+}
+.layout-one,
+.layout-two {
+ border: .1rem solid #000;
+ border: solid;
+ border-width: 1px;
+ flex: 1;
+}
+.layout-one {
+ margin-right: 1rem;
+}
+.layout-two {
+ margin-left: 1rem;
+}
+#container-pages {
+ padding-bottom: 40px;
+}
+button {
+ margin-top: 20px;
+}
+button:disabled {
+ opacity: .6;
+ margin-top: 20px;
+}
+h1 {
+ text-align: center;
+}
+[data-testid="crowd-submit"] {
+ display: none;
+}
+.border {
+ border: 2px blue dashed;
+}
+.mr-0 {
+ margin-right: 0;
+}
+.ml-auto {
+ margin-left: auto;
+ font-size: 16px;
+}
+.d-block {
+ display: block;
+}
+input[type=radio] {
+ margin: 15px;
+ padding: 0;
+}
+.details,
+.summary {
+ margin-left: 10px;
+ color: black;
+ background: #D3D3D3;
+ display: True;
+}
+h4 {
+ margin-bottom: 0;
+}
+.pad-left {
+ padding-left: 50px;
+}
+.writing_error {
+ color: red;
+}
+[id^=writing] {
+ border-bottom: 1px solid grey;
+ margin-bottom: 20px;
+ padding-bottom: 20px;
+}
+crowd-text-area {
+ width: 100%;
+ margin-top: 4px;
+}
+.container-box {
+ padding-top: 5px !important;
+}
+.type3 .container-box {
+ padding-top: 20px !important;
+ border: 1px solid black;
+ margin: 22px 10px;
+ position: relative;
+}
+.container-box p {
+ margin: 0;
+}
+progress {
+ border-radius: 7px; 
+ width: 300px;
+ height: 15px;
+ box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+ margin-right: 20px;
+}
+progress::-webkit-progress-bar {
+ border-radius: 7px;
+}
+progress::-webkit-progress-value {
+ background-color: orange;
+ border-radius: 7px;
+}
+progress::-moz-progress-bar {
+ background-color: orange;
+ border-radius: 7px;
+}
+#container-progress {
+  text-align: center;  
+  padding-bottom: 25px;
+}
+#example1 {
+  background-image: url('');
+  width: 1200px;
+  height: 600px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+}
+.imgExample {
+  margin: 0 auto;
+  max-width: 30%;
+}
+.textImage {
+  margin-top: 0;
+  text-align: center;
+  font-size: 15px;
+}
+.proText{
+  background-color: #adcea1;
+}
+.conText{
+  background-color: #ea9999;
+}
+.oneIage {
+  width: 100%;
+  margin: auto;
+}
+</style>
+<crowd-form answer-format="flatten-objects">
+ <!-- Page 1 start -->
+ <div class="page" id="Page1">
+  <h2>
+   One-sidedness in Texts
+  </h2>
+  <h5>
+   About this HIT:
+  </h5>
+  <ol>
+   <li>
+    <b>
+     Objective
+    </b>
+   </li>
+   <ul>
+    <li>
+     Given two texts A and B, determine which text is
+     <b>
+      more one-sided
+     </b>
+     than the other.
+    </li>
+   </ul>
+   <br/>
+   <li>
+    <b>
+     Instructions
+    </b>
+   </li>
+   <ul>
+    <li>
+     An argumentative text wants to convince you of something. Some texts are more one-sided than others.
+    </li>
+    <li>
+     We will present you two texts on a controversial topic side by side (A and B), each including four arguments.
+    </li>
+    <li>
+     An argument can be either "pro" or "con" regarding the controversial topic. For example:
+    </li>
+    <br/>
+    <div style="display: flex;">
+     <img class="oneIage" src="https://i.imgur.com/qUHjiua.png"/>
+    </div>
+    <br/>
+    <li>
+     We call a text
+     <b>
+      one-sided
+     </b>
+     if it includes more pro arguments than con arguments (or the other way around).
+    </li>
+    <li>
+     We call a text
+     <b>
+      more one-sided
+     </b>
+     than another if it has more pro arguments than the other text (or con arguments).
+    </li>
+    <li>
+     In Example 2, text A is more one-sided than text B because text A has more pro arguments than con arguments, while text B has equal number of pro arguments and con arguments.
+    </li>
+    <li>
+     In Example 3, neither text is more one-sided because both have the same number of con arguments.
+    </li>
+    <br/>
+   </ul>
+   <li>
+    <b>
+     Disclaimer
+    </b>
+   </li>
+   <ul>
+    <li>
+     <b>
+      You will not be compensated if:
+     </b>
+    </li>
+    <li>
+     You fail reading all the content, the system will detect if you don't read all the content.
+    </li>
+    <li>
+     You don't answer all the questions.
+    </li>
+    <li>
+     <b>
+      You participated more than one time. You can answer this survey only one time.
+     </b>
+     The focus of the experiment is to get different participants. Therefore,
+     <b>
+      we need unique participants
+     </b>
+     for this study.
+     <b>
+      The system will reject your work if it finds that you already participated.
+     </b>
+     <b>
+      So please to avoid any impact on your approval rating, answer this survey only once.
+     </b>
+    </li>
+    <li>
+     <b>
+      The quality of your answers is bad,
+     </b>
+     meaning that you copied and pasted the content of the survey to answer the questions or if you give random justifications, that do not show any effort of reading and understanding the content of the HIT.
+    </li>
+   </ul>
+  </ol>
+  <div style="display: none;">
+   <crowd-text-area class="time-elapsed" name="time_elapsed_instructions">
+   </crowd-text-area>
+  </div>
+  <button class="d-block mr-0 ml-auto btn-next" id="button1" style="height:30px;width:100px" type="button">
+   start
+  </button>
+ </div>
+ <!-- Page 1 end -->
+ <section id="container-pages">
+  <!-- Start participant Stance collection -->
+  <div class="page type3" id="example" style="display: none;">
+   <!--<h3>Part 3/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <h5>
+      Instructions:
+      <br>
+       <br>
+        Read the example, and answer the questions:
+       </br>
+      </br>
+     </h5>
+     <br>
+      <h1>
+       Tidal energy
+      </h1>
+      <section class="row">
+       <div class="layout-one">
+        <h3>
+         A
+        </h3>
+        <div>
+         <div class="container-box proText">
+          <p>
+           "The few studies that have been undertaken to date to identify the environmental impacts of a tidal power scheme have determined that each specific site is different and the impacts depend greatly upon local geography." It is important, therefore, to judge the potential for tidal energy on a case by case basis. Environmental-soundness of tidal energy varies; judgement
+          </p>
+         </div>
+         <div class="container-box proText">
+          <p class="proText">
+           Many forms of energy have potential environmental impacts. The focus should be on designing regulations that minimize or eliminate these impacts. Regulations can minimize environmental impact of tidal energy
+          </p>
+         </div>
+         <div class="container-box conText">
+          <p>
+           Bays and estuaries are always naturally "flushed" or cleansed and replenished by tide-waters flowing in and out. To the extent that tidal energy impairs the natural flows of these tides, it impairs this natural "flushing" mechanism. This can alter and even destroy an ecosystem. Tidal energy can impair the natural "flushing" of water ecosystems.
+          </p>
+         </div>
+         <div class="container-box conText">
+          <p>
+           Tidal energy can slow the movement of water in a bay or estuary, which reduces the amount of kinetic energy and causes the body of water to freeze-over more often or for longer periods of time. This has consequences for marine ecosystems. Tidal energy can lead to prolonged and undesirable winter icing.
+          </p>
+         </div>
+        </div>
+       </div>
+       <div class="layout-two">
+        <h3>
+         B
+        </h3>
+        <div>
+         <div class="container-box conText">
+          <p>
+           "The devices' anchors and cables might damage critical ecosystems like salt marshes, estuaries, and near-shore reefs, or alter the natural processes that maintain ocean and coastal ecosystems, such as the movement of sand, silt, animals, and larvae." Anchors of tidal energy systems can damage ecosystems
+          </p>
+         </div>
+         <div class="container-box conText">
+          <p>
+           "there is only one major tidal generating station in operation. This is a 240 megawatt (1 megawatt = 1 MW = 1 million watts) at the mouth of the La Rance river estuary on the northern coast of France (a large coal or nuclear power plant generates about 1,000 MW of electricity)." Tidal energy generates very little energy comparatively
+          </p>
+         </div>
+         <div class="container-box proText">
+          <p>
+           While it may not be easy or "cheap" to install tidal power turbines and barrages it is certainly much easier than installing massive hydroelectric dams and nuclear plants. Tidal power installation is easier than dams and nuclear plants.
+          </p>
+         </div>
+         <div class="container-box conText">
+          <p>
+           "Some fishing communities worry that their fishing grounds could be disturbed. Toxic hydraulic fluids might leak." Tidal energy could disrupt local fishing industries
+          </p>
+         </div>
+        </div>
+       </div>
+      </section>
+      <div class="container">
+       <h4>
+        1. Which text is more one-sided?
+       </h4>
+       <input class="answer_question example_question" data-id-question="example" name="example_question1" type="radio" value="a"/>
+       A
+       <input class="answer_question example_question" data-id-question="example" name="example_question1" type="radio" value="b"/>
+       B
+       <input class="answer_question example_question" data-id-question="example" name="example_question1" type="radio" value="none"/>
+       None
+       <i>
+       </i>
+      </div>
+      <div class="container">
+       <h4>
+        2. How sure you are?
+       </h4>
+       <input class="answer_question" data-id-question="example" name="example_question2" type="radio" value="very"/>
+       Very sure
+       <input class="answer_question" data-id-question="example" name="example_question2" type="radio" value="rasonable"/>
+       Reasonable sure
+       <input class="answer_question" data-id-question="example" name="example_question2" type="radio" value="unsure"/>
+       Unsure
+       <i>
+       </i>
+      </div>
+      <h4>
+       3. Please explain your decision in Question 1. Why do you consider the selected text more one-sided (explain your decision in more than 6 words)?
+      </h4>
+      <div class="textarea-container fit" style="padding-left: 10px;">
+       <crowd-text-area class="answer_question" data-id-question="example" max-words="5" min-words="3" name="example_justify_filter" placeholder="Write here ...." rows="2" word-limit="true">
+       </crowd-text-area>
+       <div class="writing_error">
+       </div>
+      </div>
+      <br>
+       <hr/>
+      </br>
+     </br>
+    </section>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next btn-example" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_example">
+    </crowd-text-area>
+   </div>
+  </div>
+  <div class="page type1" id="agree" style="display: none;">
+   <!--<h3>Part 2/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <strong>
+      What is your stance regarding the following topics:
+     </strong>
+     <div class="text-question" style="margin-top: 20px">
+      <div class="container">
+       Wave power?:
+       <div style="margin: -2px 15px 14px">
+        <input class="answer_question" data-id-question="agree" name="personal_stance_4" type="radio" value="agree"/>
+        Agree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_4" type="radio" value="disagree"/>
+        Disagree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_4" type="radio" value="neutral"/>
+        Neutral
+        <input class="answer_question" data-id-question="agree" name="personal_stance_4" type="radio" value="unknown"/>
+        Unknown
+       </div>
+      </div>
+      <div class="container">
+       Primaries in US elections?:
+       <div style="margin: -2px 15px 14px">
+        <input class="answer_question" data-id-question="agree" name="personal_stance_3" type="radio" value="agree"/>
+        Agree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_3" type="radio" value="disagree"/>
+        Disagree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_3" type="radio" value="neutral"/>
+        Neutral
+        <input class="answer_question" data-id-question="agree" name="personal_stance_3" type="radio" value="unknown"/>
+        Unknown
+       </div>
+      </div>
+      <div class="container">
+       Assault weapons ban in the United States?:
+       <div style="margin: -2px 15px 14px">
+        <input class="answer_question" data-id-question="agree" name="personal_stance_2" type="radio" value="agree"/>
+        Agree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_2" type="radio" value="disagree"/>
+        Disagree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_2" type="radio" value="neutral"/>
+        Neutral
+        <input class="answer_question" data-id-question="agree" name="personal_stance_2" type="radio" value="unknown"/>
+        Unknown
+       </div>
+      </div>
+      <div class="container">
+       Atheism?:
+       <div style="margin: -2px 15px 14px">
+        <input class="answer_question" data-id-question="agree" name="personal_stance_1" type="radio" value="agree"/>
+        Agree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_1" type="radio" value="disagree"/>
+        Disagree
+        <input class="answer_question" data-id-question="agree" name="personal_stance_1" type="radio" value="neutral"/>
+        Neutral
+        <input class="answer_question" data-id-question="agree" name="personal_stance_1" type="radio" value="unknown"/>
+        Unknown
+       </div>
+      </div>
+     </div>
+    </section>
+   </div>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_personal_stance">
+    </crowd-text-area>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+  </div>
+  <!-- End participant Stance collection -->
+  <!-- Page type 3 start -->
+  <div class="page type3" id="type3" style="display: none;">
+   <!--<h3>Part 3/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <h5>
+      Instructions:
+      <br/>
+      <br/>
+      Below, label the argument bounded in a box by selecting the stance option that, in your opinion, best represents the paragraph (you will not be able to continue if you dont select a label option):
+     </h5>
+     <br/>
+     <h1>
+      Wave power
+     </h1>
+     <section class="row">
+      <div class="layout-one">
+       <h3>
+        A
+       </h3>
+       <div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          Wave power absorbs some of the energy in waves, thus diminishing the energy of waves that reach the coast. This can help reduce coastal erosion. Wave power installations can reduce coastal erosion.
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-2" name="question-select_310" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_310" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_310" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_310" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          "High initial startup costs". Wave power systems have high initial capital costs
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_360" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_360" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_360" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_360" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          Repairing generators is a costly proposition, largely because it requires doing repairs at sea or under-water. In addition to the repairs, dislodged wave generators can present a hazard to boats and coastal areas, which creates the prospect of expensive lawsuits. Storms can damage and dislodge wave generators.
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_3100" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_3100" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_3100" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_3100" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          "A potentially highly efficient wave-to-electricity conversion ratio[...]The sheer force/density of water compared to wind equates to far fewer generators being required compared with wind turbines." Waves pack substantial energy; few wave generators are required
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-2" name="question-select_330" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_330" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_330" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_330" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="layout-two">
+       <h3>
+        B
+       </h3>
+       <div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          "Difficulty to transfer energy back to land". Difficult to transfer wave energy back to land
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_3110" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_3110" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_3110" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_3110" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          "on shore ocean wave energy generators will occupy extended lengths of coastline. And most of the coastlines of the world that have significant wave activity are either highly desired residential areas, or they are pristine wilderness[...]It doesn’t take a genius to see that any proposal to line these shores with ocean wave energy generators will be met with stiff resistance." Wave power will see resistance from coastal residents
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_390" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_390" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_390" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_390" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          There are many regulations surrounding the permits given to coastline projects. Wave energy projects risk running up against these regulations. Wave power proposals will run up against permit regulations
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_380" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_380" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_380" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_380" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          "Needs a suitable site, where waves are consistently strong". Wave power is only viable where conditions are right
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_370" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_370" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_370" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_370" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+     <!--<div class="container">
+                  <h4>1. Which text has more pro stances (paragraphs that agree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question3_1_4" class="answer_question" data-id-question="type3"  >A</input>
+                  <input type="radio" value="val2" name="question3_1_4" class="answer_question" data-id-question="type3"  >B</input>
+                  <input type="radio" value="val3" name="question3_1_4" class="answer_question" data-id-question="type3"  >None, both have the same amount of pro paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. Which text has more con stances (paragraphs that disagree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question3_2_4" class="answer_question" data-id-question="type3"  >A</input>
+                  <input type="radio" value="val2" name="question3_2_4" class="answer_question" data-id-question="type3"  >B</input>
+                  <input type="radio" value="val3" name="question3_2_4" class="answer_question" data-id-question="type3"  >None, both have the same amount of con paragraphs</input>
+                  <i></i>
+                </div>-->
+     <div class="container">
+      <h4>
+       1. Which text is more one-sided?
+      </h4>
+      <input class="answer_question" data-id-question="type3" name="question3_3_4" type="radio" value="val1"/>
+      A
+      <input class="answer_question" data-id-question="type3" name="question3_3_4" type="radio" value="val2"/>
+      B
+      <input class="answer_question" data-id-question="type3" name="question3_3_4" type="radio" value="val3"/>
+      None
+      <i>
+      </i>
+     </div>
+     <div class="container">
+      <h4>
+       2. How sure you are?
+      </h4>
+      <input class="answer_question" data-id-question="type3" name="question3_4_4" type="radio" value="val1"/>
+      Very sure
+      <input class="answer_question" data-id-question="type3" name="question3_4_4" type="radio" value="val2"/>
+      Reasonable sure
+      <input class="answer_question" data-id-question="type3" name="question3_4_4" type="radio" value="val3"/>
+      Unsure
+      <i>
+      </i>
+     </div>
+     <br/>
+     <hr/>
+    </section>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_id_4">
+    </crowd-text-area>
+   </div>
+  </div>
+  <!-- Page type 3 end -->
+  <!-- Page type 2 start -->
+  <div class="page type2" id="id_3" style="display: none;">
+   <!--<h3>Part 3/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <h1>
+      Primaries in US elections
+     </h1>
+     <section class="row">
+      <div class="layout-one">
+       <h3>
+        A
+       </h3>
+       <div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          Iowa and New Hampshire are both very small states that represent less than 1% of the electorate of the United States. They also do not reflect the diversity of interests that run across the United States. And, yet, these states are given unparalleled influence on the outcome the the presidential elections. Iowa and New hampshire are unrepresentative of the US
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_250" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_250" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_250" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_250" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          The problem with a national primary is that it would violate many of the interests and powers that are constitutionally and politically necessary to preserve. First, it would violate the state governments' powers in establishing the election process and state parties interests in working together with the state to craft this process. Second, it would violate the interests of the Parties to preserve their right to free association and to ensure that their nominee reflects the interests of their party. A national primary would violate Party rights to association
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-2" name="question-select_210" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_210" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_210" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_210" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          News media often reports the popular vote in primaries simply because it is easier to explain. But, this does not always reflect the reality of how delegates are appointed. The primaries, therefore, can create some level of public confusion. Complicated US primaries lead to misleading vote counts
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_2100" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_2100" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_2100" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_2100" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          Studies have confirmed that the "New Hampshire effect" translates to a shift in focus to the early primaries. In this way most states schedule their primary dates very early crowding the calendar. This allows for less time for voters to observe and evaluate their candidates and also skews the process towards the earliest dates. "Frontloading" shifts attention only to the earliest primaries and in this disrupting a real participatory democracy
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_290" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_290" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_290" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_290" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="layout-two">
+       <h3>
+        B
+       </h3>
+       <div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          The US presidential elections are a globally important phenomena, but foreigners struggle to follow the process. This creates unfortunate impressions abroad about the system the elects the most powerful person in the world; a person that will affect foreigners. Complicated primary elections create confusion abroad
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_2130" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_2130" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_2130" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_2130" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          The United States have developed an institutional tradition of undemocratic mechanisms designed to actually control political processes.These institutions such as the Supreme Court, the Electoral College , the President's veto power have been part of the American Government and have helped preserve democracy since the foundation of the United States. Primary elections need not be fully democratic
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-2" name="question-select_200" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_200" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_200" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_200" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          Instead of giving states delegates based on population, electoral college, or strength of the party in that state, the parties have a formula involving several other factors. This formula does not give states with close to the same population the same amount of impact on the primary season. Primary elections distribute power unequally among voters
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_2110" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_2110" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_2110" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_2110" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+        <div class="container-box">
+         <p span="" style="font-:normal">
+          Every state has a different primary system. Some have primary elections, some have caucuses, and some have both. These and other variations make it difficult for ordinary voters to follow the system, understand how they should engage as voters, and subsequently has the potential to turn them off to voting all together, which is bad for democracy. The complicated primary system creates confusion and turns voters off
+         </p>
+         <div class="select-box">
+          <div class="container"><input type="radio" value="1-1" name="question-select_2120" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_2120" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_2120" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_2120" class="answer_question" data-id-question="type3">Neutral</input></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+     <div class="container">
+      <h4>
+       1. Which text has more pro stances (paragraphs that agree with the topic)?
+      </h4>
+      <input class="answer_question" data-id-question="id_3" name="question2_1_3" type="radio" value="val1"/>
+      A
+      <input class="answer_question" data-id-question="id_3" name="question2_1_3" type="radio" value="val2"/>
+      B
+      <input class="answer_question" data-id-question="id_3" name="question2_1_3" type="radio" value="val3"/>
+      None, both have the same amount of pro paragraphs
+      <i>
+      </i>
+     </div>
+     <div class="container">
+      <h4>
+       2. Which text has more con stances (paragraphs that disagree with the topic)?
+      </h4>
+      <input class="answer_question" data-id-question="id_3" name="question2_2_3" type="radio" value="val1"/>
+      A
+      <input class="answer_question" data-id-question="id_3" name="question2_2_3" type="radio" value="val2"/>
+      B
+      <input class="answer_question" data-id-question="id_3" name="question2_2_3" type="radio" value="val3"/>
+      None, both have the same amount of con paragraphs
+      <i>
+      </i>
+     </div>
+     <div class="container">
+      <h4>
+       3. Which text is more one-sided?
+      </h4>
+      <input class="answer_question" data-id-question="id_3" name="question2_3_3" type="radio" value="val1"/>
+      A
+      <input class="answer_question" data-id-question="id_3" name="question2_3_3" type="radio" value="val2"/>
+      B
+      <input class="answer_question" data-id-question="id_3" name="question2_3_3" type="radio" value="val3"/>
+      None
+      <i>
+      </i>
+     </div>
+     <div class="container">
+      <h4>
+       4. How sure you are?
+      </h4>
+      <input class="answer_question" data-id-question="id_3" name="question2_4_3" type="radio" value="val1"/>
+      Very sure
+      <input class="answer_question" data-id-question="id_3" name="question2_4_3" type="radio" value="val2"/>
+      Reasonable sure
+      <input class="answer_question" data-id-question="id_3" name="question2_4_3" type="radio" value="val3"/>
+      Unsure
+      <i>
+      </i>
+     </div>
+     <br/>
+     <hr/>
+    </section>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_3">
+    </crowd-text-area>
+   </div>
+  </div>
+  <!-- Page type 2 end -->
+  <!-- Page type info start -->
+  <div class="page type1 information" id="information" style="display: none;">
+   <!--<h3>Part 2/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <strong>
+      Please fill the below form with your profile information:
+     </strong>
+     <div class="text-question" style="margin-top: 20px">
+      <div class="container">
+       <h4>
+        1. Gender
+       </h4>
+       <div style="margin: 15px">
+        <input class="answer_question gender" data-id-question="information" name="information_gender" type="radio" value="F"/>
+        F
+        <input class="answer_question gender" data-id-question="information" name="information_gender" type="radio" value="M"/>
+        M
+        <input class="answer_question gender" data-id-question="information" id="other_op" name="information_gender" type="radio" value="other"/>
+        Other
+        <input class="answer_question" data-id-question="information" disabled="" id="Specify" name="information_gender_specify" placeholder="Specify" type="text" value=""/>
+       </div>
+      </div>
+      <div class="">
+       <h4>
+        2. Age group
+       </h4>
+       <div style="margin: 15px">
+        <select class="answer_question" data-id-question="information" name="information_age_group">
+         <option disabled="" hidden="" selected="" value="">
+          -- select one --
+         </option>
+         <option value="18">
+          18
+         </option>
+         <option value="19">
+          19
+         </option>
+         <option value="20">
+          20
+         </option>
+         <option value="21">
+          21
+         </option>
+         <option value="22">
+          22
+         </option>
+         <option value="23">
+          23
+         </option>
+         <option value="24">
+          24
+         </option>
+         <option value="25">
+          25
+         </option>
+         <option value="26">
+          26
+         </option>
+         <option value="27">
+          27
+         </option>
+         <option value="29">
+          29
+         </option>
+         <option value="30">
+          30
+         </option>
+         <option value="31">
+          31
+         </option>
+         <option value="32">
+          32
+         </option>
+         <option value="33">
+          33
+         </option>
+         <option value="34">
+          34
+         </option>
+         <option value="35">
+          35
+         </option>
+         <option value="36">
+          36
+         </option>
+         <option value="37">
+          37
+         </option>
+         <option value="38">
+          38
+         </option>
+         <option value="39">
+          39
+         </option>
+         <option value="40">
+          40
+         </option>
+         <option value="41">
+          41
+         </option>
+         <option value="42">
+          42
+         </option>
+         <option value="43">
+          43
+         </option>
+         <option value="44">
+          44
+         </option>
+         <option value="45">
+          45
+         </option>
+         <option value="46">
+          46
+         </option>
+         <option value="47">
+          47
+         </option>
+         <option value="48">
+          48
+         </option>
+         <option value="49">
+          49
+         </option>
+         <option value="50">
+          50
+         </option>
+         <option value="51">
+          51
+         </option>
+         <option value="52">
+          52
+         </option>
+         <option value="53">
+          53
+         </option>
+         <option value="54">
+          54
+         </option>
+         <option value="55">
+          55
+         </option>
+         <option value="56">
+          56
+         </option>
+         <option value="57">
+          57
+         </option>
+         <option value="58">
+          58
+         </option>
+         <option value="59">
+          59
+         </option>
+         <option value="60">
+          60
+         </option>
+         <option value="61">
+          61
+         </option>
+         <option value="62">
+          62
+         </option>
+         <option value="63">
+          63
+         </option>
+         <option value="64">
+          64
+         </option>
+         <option value="65">
+          65
+         </option>
+         <option value="66">
+          66
+         </option>
+         <option value="67">
+          67
+         </option>
+         <option value="68">
+          68
+         </option>
+         <option value="69">
+          69
+         </option>
+         <option value="70">
+          70
+         </option>
+         <option value="71">
+          71
+         </option>
+         <option value="72">
+          72
+         </option>
+         <option value="73">
+          73
+         </option>
+         <option value="74">
+          74
+         </option>
+         <option value="75">
+          75
+         </option>
+         <option value="76">
+          76
+         </option>
+         <option value="77">
+          77
+         </option>
+         <option value="78">
+          78
+         </option>
+         <option value="79">
+          79
+         </option>
+         <option value="80">
+          80
+         </option>
+         <option value="81">
+          81
+         </option>
+         <option value="82">
+          82
+         </option>
+         <option value="83">
+          83
+         </option>
+         <option value="84">
+          84
+         </option>
+         <option value="85">
+          85
+         </option>
+         <option value="86">
+          86
+         </option>
+         <option value="87">
+          87
+         </option>
+         <option value="88">
+          88
+         </option>
+         <option value="89">
+          89
+         </option>
+         <option value="90">
+          90
+         </option>
+         <option value="91">
+          91
+         </option>
+         <option value="92">
+          92
+         </option>
+         <option value="93">
+          93
+         </option>
+         <option value="94">
+          94
+         </option>
+         <option value="95">
+          95
+         </option>
+         <option value="96">
+          96
+         </option>
+         <option value="97">
+          97
+         </option>
+         <option value="98">
+          98
+         </option>
+         <option value="99">
+          99
+         </option>
+        </select>
+       </div>
+      </div>
+      <div class="">
+       <h4>
+        3. Nationality
+       </h4>
+       <div style="margin: 15px">
+        <select class="answer_question" data-id-question="information" name="information_nationality">
+         <option disabled="" hidden="" selected="" value="">
+          -- select one --
+         </option>
+         <option value="afghan">
+          Afghan
+         </option>
+         <option value="albanian">
+          Albanian
+         </option>
+         <option value="algerian">
+          Algerian
+         </option>
+         <option value="american">
+          American
+         </option>
+         <option value="andorran">
+          Andorran
+         </option>
+         <option value="angolan">
+          Angolan
+         </option>
+         <option value="antiguans">
+          Antiguans
+         </option>
+         <option value="argentinean">
+          Argentinean
+         </option>
+         <option value="armenian">
+          Armenian
+         </option>
+         <option value="australian">
+          Australian
+         </option>
+         <option value="austrian">
+          Austrian
+         </option>
+         <option value="azerbaijani">
+          Azerbaijani
+         </option>
+         <option value="bahamian">
+          Bahamian
+         </option>
+         <option value="bahraini">
+          Bahraini
+         </option>
+         <option value="bangladeshi">
+          Bangladeshi
+         </option>
+         <option value="barbadian">
+          Barbadian
+         </option>
+         <option value="barbudans">
+          Barbudans
+         </option>
+         <option value="batswana">
+          Batswana
+         </option>
+         <option value="belarusian">
+          Belarusian
+         </option>
+         <option value="belgian">
+          Belgian
+         </option>
+         <option value="belizean">
+          Belizean
+         </option>
+         <option value="beninese">
+          Beninese
+         </option>
+         <option value="bhutanese">
+          Bhutanese
+         </option>
+         <option value="bolivian">
+          Bolivian
+         </option>
+         <option value="bosnian">
+          Bosnian
+         </option>
+         <option value="brazilian">
+          Brazilian
+         </option>
+         <option value="british">
+          British
+         </option>
+         <option value="bruneian">
+          Bruneian
+         </option>
+         <option value="bulgarian">
+          Bulgarian
+         </option>
+         <option value="burkinabe">
+          Burkinabe
+         </option>
+         <option value="burmese">
+          Burmese
+         </option>
+         <option value="burundian">
+          Burundian
+         </option>
+         <option value="cambodian">
+          Cambodian
+         </option>
+         <option value="cameroonian">
+          Cameroonian
+         </option>
+         <option value="canadian">
+          Canadian
+         </option>
+         <option value="cape verdean">
+          Cape Verdean
+         </option>
+         <option value="central african">
+          Central African
+         </option>
+         <option value="chadian">
+          Chadian
+         </option>
+         <option value="chilean">
+          Chilean
+         </option>
+         <option value="chinese">
+          Chinese
+         </option>
+         <option value="colombian">
+          Colombian
+         </option>
+         <option value="comoran">
+          Comoran
+         </option>
+         <option value="congolese">
+          Congolese
+         </option>
+         <option value="costa rican">
+          Costa Rican
+         </option>
+         <option value="croatian">
+          Croatian
+         </option>
+         <option value="cuban">
+          Cuban
+         </option>
+         <option value="cypriot">
+          Cypriot
+         </option>
+         <option value="czech">
+          Czech
+         </option>
+         <option value="danish">
+          Danish
+         </option>
+         <option value="djibouti">
+          Djibouti
+         </option>
+         <option value="dominican">
+          Dominican
+         </option>
+         <option value="dutch">
+          Dutch
+         </option>
+         <option value="east timorese">
+          East Timorese
+         </option>
+         <option value="ecuadorean">
+          Ecuadorean
+         </option>
+         <option value="egyptian">
+          Egyptian
+         </option>
+         <option value="emirian">
+          Emirian
+         </option>
+         <option value="equatorial guinean">
+          Equatorial Guinean
+         </option>
+         <option value="eritrean">
+          Eritrean
+         </option>
+         <option value="estonian">
+          Estonian
+         </option>
+         <option value="ethiopian">
+          Ethiopian
+         </option>
+         <option value="fijian">
+          Fijian
+         </option>
+         <option value="filipino">
+          Filipino
+         </option>
+         <option value="finnish">
+          Finnish
+         </option>
+         <option value="french">
+          French
+         </option>
+         <option value="gabonese">
+          Gabonese
+         </option>
+         <option value="gambian">
+          Gambian
+         </option>
+         <option value="georgian">
+          Georgian
+         </option>
+         <option value="german">
+          German
+         </option>
+         <option value="ghanaian">
+          Ghanaian
+         </option>
+         <option value="greek">
+          Greek
+         </option>
+         <option value="grenadian">
+          Grenadian
+         </option>
+         <option value="guatemalan">
+          Guatemalan
+         </option>
+         <option value="guinea-bissauan">
+          Guinea-Bissauan
+         </option>
+         <option value="guinean">
+          Guinean
+         </option>
+         <option value="guyanese">
+          Guyanese
+         </option>
+         <option value="haitian">
+          Haitian
+         </option>
+         <option value="herzegovinian">
+          Herzegovinian
+         </option>
+         <option value="honduran">
+          Honduran
+         </option>
+         <option value="hungarian">
+          Hungarian
+         </option>
+         <option value="icelander">
+          Icelander
+         </option>
+         <option value="indian">
+          Indian
+         </option>
+         <option value="indonesian">
+          Indonesian
+         </option>
+         <option value="iranian">
+          Iranian
+         </option>
+         <option value="iraqi">
+          Iraqi
+         </option>
+         <option value="irish">
+          Irish
+         </option>
+         <option value="israeli">
+          Israeli
+         </option>
+         <option value="italian">
+          Italian
+         </option>
+         <option value="ivorian">
+          Ivorian
+         </option>
+         <option value="jamaican">
+          Jamaican
+         </option>
+         <option value="japanese">
+          Japanese
+         </option>
+         <option value="jordanian">
+          Jordanian
+         </option>
+         <option value="kazakhstani">
+          Kazakhstani
+         </option>
+         <option value="kenyan">
+          Kenyan
+         </option>
+         <option value="kittian and nevisian">
+          Kittian and Nevisian
+         </option>
+         <option value="kuwaiti">
+          Kuwaiti
+         </option>
+         <option value="kyrgyz">
+          Kyrgyz
+         </option>
+         <option value="laotian">
+          Laotian
+         </option>
+         <option value="latvian">
+          Latvian
+         </option>
+         <option value="lebanese">
+          Lebanese
+         </option>
+         <option value="liberian">
+          Liberian
+         </option>
+         <option value="libyan">
+          Libyan
+         </option>
+         <option value="liechtensteiner">
+          Liechtensteiner
+         </option>
+         <option value="lithuanian">
+          Lithuanian
+         </option>
+         <option value="luxembourger">
+          Luxembourger
+         </option>
+         <option value="macedonian">
+          Macedonian
+         </option>
+         <option value="malagasy">
+          Malagasy
+         </option>
+         <option value="malawian">
+          Malawian
+         </option>
+         <option value="malaysian">
+          Malaysian
+         </option>
+         <option value="maldivan">
+          Maldivan
+         </option>
+         <option value="malian">
+          Malian
+         </option>
+         <option value="maltese">
+          Maltese
+         </option>
+         <option value="marshallese">
+          Marshallese
+         </option>
+         <option value="mauritanian">
+          Mauritanian
+         </option>
+         <option value="mauritian">
+          Mauritian
+         </option>
+         <option value="mexican">
+          Mexican
+         </option>
+         <option value="micronesian">
+          Micronesian
+         </option>
+         <option value="moldovan">
+          Moldovan
+         </option>
+         <option value="monacan">
+          Monacan
+         </option>
+         <option value="mongolian">
+          Mongolian
+         </option>
+         <option value="moroccan">
+          Moroccan
+         </option>
+         <option value="mosotho">
+          Mosotho
+         </option>
+         <option value="motswana">
+          Motswana
+         </option>
+         <option value="mozambican">
+          Mozambican
+         </option>
+         <option value="namibian">
+          Namibian
+         </option>
+         <option value="nauruan">
+          Nauruan
+         </option>
+         <option value="nepalese">
+          Nepalese
+         </option>
+         <option value="new zealander">
+          New Zealander
+         </option>
+         <option value="ni-vanuatu">
+          Ni-Vanuatu
+         </option>
+         <option value="nicaraguan">
+          Nicaraguan
+         </option>
+         <option value="nigerien">
+          Nigerien
+         </option>
+         <option value="north korean">
+          North Korean
+         </option>
+         <option value="northern irish">
+          Northern Irish
+         </option>
+         <option value="norwegian">
+          Norwegian
+         </option>
+         <option value="omani">
+          Omani
+         </option>
+         <option value="pakistani">
+          Pakistani
+         </option>
+         <option value="palauan">
+          Palauan
+         </option>
+         <option value="panamanian">
+          Panamanian
+         </option>
+         <option value="papua new guinean">
+          Papua New Guinean
+         </option>
+         <option value="paraguayan">
+          Paraguayan
+         </option>
+         <option value="peruvian">
+          Peruvian
+         </option>
+         <option value="polish">
+          Polish
+         </option>
+         <option value="portuguese">
+          Portuguese
+         </option>
+         <option value="qatari">
+          Qatari
+         </option>
+         <option value="romanian">
+          Romanian
+         </option>
+         <option value="russian">
+          Russian
+         </option>
+         <option value="rwandan">
+          Rwandan
+         </option>
+         <option value="saint lucian">
+          Saint Lucian
+         </option>
+         <option value="salvadoran">
+          Salvadoran
+         </option>
+         <option value="samoan">
+          Samoan
+         </option>
+         <option value="san marinese">
+          San Marinese
+         </option>
+         <option value="sao tomean">
+          Sao Tomean
+         </option>
+         <option value="saudi">
+          Saudi
+         </option>
+         <option value="scottish">
+          Scottish
+         </option>
+         <option value="senegalese">
+          Senegalese
+         </option>
+         <option value="serbian">
+          Serbian
+         </option>
+         <option value="seychellois">
+          Seychellois
+         </option>
+         <option value="sierra leonean">
+          Sierra Leonean
+         </option>
+         <option value="singaporean">
+          Singaporean
+         </option>
+         <option value="slovakian">
+          Slovakian
+         </option>
+         <option value="slovenian">
+          Slovenian
+         </option>
+         <option value="solomon islander">
+          Solomon Islander
+         </option>
+         <option value="somali">
+          Somali
+         </option>
+         <option value="south african">
+          South African
+         </option>
+         <option value="south korean">
+          South Korean
+         </option>
+         <option value="spanish">
+          Spanish
+         </option>
+         <option value="sri lankan">
+          Sri Lankan
+         </option>
+         <option value="sudanese">
+          Sudanese
+         </option>
+         <option value="surinamer">
+          Surinamer
+         </option>
+         <option value="swazi">
+          Swazi
+         </option>
+         <option value="swedish">
+          Swedish
+         </option>
+         <option value="swiss">
+          Swiss
+         </option>
+         <option value="syrian">
+          Syrian
+         </option>
+         <option value="taiwanese">
+          Taiwanese
+         </option>
+         <option value="tajik">
+          Tajik
+         </option>
+         <option value="tanzanian">
+          Tanzanian
+         </option>
+         <option value="thai">
+          Thai
+         </option>
+         <option value="togolese">
+          Togolese
+         </option>
+         <option value="tongan">
+          Tongan
+         </option>
+         <option value="trinidadian or tobagonian">
+          Trinidadian or Tobagonian
+         </option>
+         <option value="tunisian">
+          Tunisian
+         </option>
+         <option value="turkish">
+          Turkish
+         </option>
+         <option value="tuvaluan">
+          Tuvaluan
+         </option>
+         <option value="ugandan">
+          Ugandan
+         </option>
+         <option value="ukrainian">
+          Ukrainian
+         </option>
+         <option value="uruguayan">
+          Uruguayan
+         </option>
+         <option value="uzbekistani">
+          Uzbekistani
+         </option>
+         <option value="venezuelan">
+          Venezuelan
+         </option>
+         <option value="vietnamese">
+          Vietnamese
+         </option>
+         <option value="welsh">
+          Welsh
+         </option>
+         <option value="yemenite">
+          Yemenite
+         </option>
+         <option value="zambian">
+          Zambian
+         </option>
+         <option value="zimbabwean">
+          Zimbabwean
+         </option>
+        </select>
+       </div>
+      </div>
+      <div class="container">
+       <h4>
+        4. English skills
+       </h4>
+       <div style="margin: 15px">
+        <input class="answer_question" data-id-question="information" name="information_english_skills" type="radio" value="Low"/>
+        Low
+        <input class="answer_question" data-id-question="information" name="information_english_skills" type="radio" value="medium"/>
+        Medium
+        <input class="answer_question" data-id-question="information" name="information_english_skills" type="radio" value="high"/>
+        High
+       </div>
+      </div>
+      <div class="container">
+       <h4>
+        6. Education level
+       </h4>
+       <div style="margin: 15px">
+        <input class="answer_question" data-id-question="information" name="information_education_level" type="radio" value="basic"/>
+        Basic
+        <input class="answer_question" data-id-question="information" name="information_education_level" type="radio" value="bachelors"/>
+        Bachelor's
+        <input class="answer_question" data-id-question="information" name="information_education_level" type="radio" value="postgraduate"/>
+        Postgraduate
+       </div>
+      </div>
+     </div>
+    </section>
+   </div>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_profile">
+    </crowd-text-area>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+  </div>
+  <!-- Page type info end -->
+  <!-- Page type 1 start -->
+  <div class="page type1" id="id_2" style="display: none;">
+   <!--<h3>Part 2/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <h1>
+      Assault weapons ban in the United States
+     </h1>
+     <div class="text-question">
+      <section class="row">
+       <div class="layout-one">
+        <h3>
+         A
+        </h3>
+        <div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           The obvious intent of the 1994 assault weapons ban was to decrease criminal acts in which assault weapons were used. But, the assault weapons ban has not done this. The 1994 assault weapons ban did not decrease crime
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_180" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_180" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_180" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_180" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Because knives are a more common weapon of choice for criminals, particularly because they are concealable, they have led to more deaths than assault weapons. Yet, Knives aren't banned. It's important to keep the relatively low societal risks in mind. Knives are more deadly than assault weapons
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_1120" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_1120" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_1120" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_1120" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           While criminals wanted to carry powerful automatic weapons in the 90s, they now prefer hand guns, as they are concealable and yet still have the necessary deadly force for them to commit crimes. The assault weapons ban is unnecessary; criminals prefer concealable hand guns
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_190" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_190" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_190" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_190" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           While the phrase "guns don't kill people, people kill people" is used widely, what it misses is the extent to which assault weapons enable deranged individuals to kill massively. Assault weapons empower the deranged to kill many people
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-2" name="question-select_100" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_100" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_100" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_100" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="layout-two">
+        <h3>
+         B
+        </h3>
+        <div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Many guns that remained publicly available after the 1994 assault weapons ban were effectively as lethal as the weapons that were banned under the legislation. This is largely because simple adjustments to assault weapons allowed exemptions from the ban. And, it is clear that many of the weapons used in the most deadly massacres, such as the Columbine or Virginia Tech massacres in the United States, were not banned by the assault weapons law. Assault weapons banned in 1994 were not uniquely lethal
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_1100" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_1100" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_1100" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_1100" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           According to , "The decline in the use of AWs has been due primarily to a reduction in the use of assault pistols (APs), which are used in crime more commonly than assault rifles (ARs). There has not been a clear decline in the use of ARs, though assessments are complicated by the rarity of crimes with these weapons and by substitution of post-ban rifles that are very similar to the banned AR models." Decline in assault weapons due to decline in assault pistols
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_1110" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_1110" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_1110" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_1110" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Some gun control advocates actually welcome the expiration of the 1994 assault weapons ban as a means to producing better gun control laws in the future. Expiration of the assault weapons ban could enable better gun control laws
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_1130" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_1130" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_1130" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_1130" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Assault weapons can hold and fire more rounds. This is directly proportional to how many people can be killed. Assault weapons are used to kill a greater number of people
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-2" name="question-select_140" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_140" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_140" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_140" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </section>
+     </div>
+     <div class="container">
+      <h4>
+       1. Which text is more one-sided?
+      </h4>
+      <!-- question_part_question_arg -->
+      <input class="answer_question" data-id-question="id_2" name="question1_1_2" type="radio" value="arg_a"/>
+      A
+      <input class="answer_question" data-id-question="id_2" name="question1_1_2" type="radio" value="arg_b"/>
+      B
+      <input class="answer_question" data-id-question="id_2" name="question1_1_2" type="radio" value="none"/>
+      None
+      <i>
+      </i>
+     </div>
+     <div class="container">
+      <h4>
+       2. How sure you are?
+      </h4>
+      <input class="answer_question" data-id-question="id_2" name="question1_2_2" type="radio" value="val1"/>
+      Very sure
+      <input class="answer_question" data-id-question="id_2" name="question1_2_2" type="radio" value="val2"/>
+      Reasonable sure
+      <input class="answer_question" data-id-question="id_2" name="question1_2_2" type="radio" value="val3"/>
+      Unsure
+      <i>
+      </i>
+     </div>
+     <h4>
+      3. Please explain your decision in Question 1. Why do you consider the selected text more one-sided (explain your decision in more than 6 words)?
+     </h4>
+     <div class="textarea-container fit" style="padding-left: 10px;">
+      <crowd-text-area class="answer_question" data-id-question="id_2" max-words="5" min-words="3" name="question1_3_2" placeholder="Write here ...." rows="2" word-limit="true">
+      </crowd-text-area>
+      <div class="writing_error">
+      </div>
+     </div>
+    </section>
+   </div>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_2">
+    </crowd-text-area>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+  </div>
+  <div class="page type1" id="id_1" style="display: none;">
+   <!--<h3>Part 2/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <h1>
+      Atheism
+     </h1>
+     <div class="text-question">
+      <section class="row">
+       <div class="layout-one">
+        <h3>
+         A
+        </h3>
+        <div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Take the Second World War, which was caused partly by Hitler's belief that the Germans were superior, a result of his belief in Evolution. The Nazi government was repressive of religion (see , and see the section headed "Nazi policy towards Churches"), and arguably Germany's main opponent in the war, the USSR, was likewise repressive of religion. Atheists have also had wars.
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_090" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_090" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_090" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_090" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Religious Institutions have helped many people do things they otherwise could have not such as quit smoking, stop drinking alcohol, and help many convicted felons turn a new leaf. They also have many volunteer programs within them and are an all around good place to make friends and have fun. Religion has helped people better themselves and world.
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_050" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_050" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_050" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_050" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Just because you believe in a just God doesn't mean you are automatically expected to be perfect. Most humans are theistic and since all humans are sinners, most sinners are theists also. But just because a religion's followers are fallen does not mean that the religion itself is automatically disproven. All humans are imperfect.
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_0100" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_0100" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_0100" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_0100" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Communism, the ideology providing the ground for so many brutal dictatorships throughout the last century, was mainly followed by atheists. When atheists criticise religions for the largely negative impact atheism has had on society, they are overlooking their own negative impact.
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_070" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_070" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_070" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_070" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="layout-two">
+        <h3>
+         B
+        </h3>
+        <div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           The claims in this section are a mish-mash of irrelevancies. Even if Hitler were motivated by evolution (to the extent that anything even approaching the scientific theory evolution were endorsed by the Nazis at all, it is the discredited beliefs of Houston Stewart Chamberlain who explicitly rejected Darwinism), evolution is not atheistic. The majority of people who accept evolution are religiously inclined. "Atheists have also had wars"
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-2" name="question-select_020" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_020" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_020" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_020" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           Yes, the idea of theocracy may describe a perfect society, but what good is a perfect society if it doesn't exist and all attempts to create one fail miserably? Replace "communism" with "theocracy"
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-2" name="question-select_030" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-2" name="question-select_030" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-2" name="question-select_030" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-2" name="question-select_030" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           The actions and beliefs of religious institutions are irrelevant to the debate of whether or not Atheism is a sound philosophy, as well as to the issue of evidence for or against God. An idea or philosophy is true or false apart from any institution, organization, or person that may claim to believe or follow that philosophy. One must look at the worldview in question and from that decide whether it fits with what we see in the universe. Acts of religious institutions are irrelevant to faith and atheism.
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_060" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_060" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_060" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_060" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+         <div class="container-box">
+          <p span="" style="font-:normal">
+           In Communist prisons many Christians were subjected to vigorous brainwashing with the intent of killing their faith, and many were also tortured in other ways. Our opponents in this debate have claimed that atheists make no attempts to convert, but this is clearly not true. For more on this topic please see Debate: Evangelism to debate whether evangelism is in itself ethical, if humane methods are used and no one is forced to convert, only encouraged. Atheists criticise religious people for evangelising and "attempting to convert people", however, they do the same.
+          </p>
+          <div class="select-box">
+           <div class="container"><input type="radio" value="1-1" name="question-select_080" class="answer_question" data-id-question="type3">Con</input>
+                <input type="radio" value="2-1" name="question-select_080" class="answer_question" data-id-question="type3">Pro</input>
+                <input type="radio" value="3-1" name="question-select_080" class="answer_question" data-id-question="type3">Unknown</input>
+                <input type="radio" value="4-1" name="question-select_080" class="answer_question" data-id-question="type3">Neutral</input></div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </section>
+     </div>
+     <div class="container">
+      <h4>
+       1. Which text is more one-sided?
+      </h4>
+      <!-- question_part_question_arg -->
+      <input class="answer_question" data-id-question="id_1" name="question1_1_1" type="radio" value="arg_a"/>
+      A
+      <input class="answer_question" data-id-question="id_1" name="question1_1_1" type="radio" value="arg_b"/>
+      B
+      <input class="answer_question" data-id-question="id_1" name="question1_1_1" type="radio" value="none"/>
+      None
+      <i>
+      </i>
+     </div>
+     <div class="container">
+      <h4>
+       2. How sure you are?
+      </h4>
+      <input class="answer_question" data-id-question="id_1" name="question1_2_1" type="radio" value="val1"/>
+      Very sure
+      <input class="answer_question" data-id-question="id_1" name="question1_2_1" type="radio" value="val2"/>
+      Reasonable sure
+      <input class="answer_question" data-id-question="id_1" name="question1_2_1" type="radio" value="val3"/>
+      Unsure
+      <i>
+      </i>
+     </div>
+     <h4>
+      3. Please explain your decision in Question 1. Why do you consider the selected text more one-sided (explain your decision in more than 6 words)?
+     </h4>
+     <div class="textarea-container fit" style="padding-left: 10px;">
+      <crowd-text-area class="answer_question" data-id-question="id_1" max-words="5" min-words="3" name="question1_3_1" placeholder="Write here ...." rows="2" word-limit="true">
+      </crowd-text-area>
+      <div class="writing_error">
+      </div>
+     </div>
+    </section>
+   </div>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed" name="time_elapsed_1">
+    </crowd-text-area>
+   </div>
+   <button class="d-block mr-0 ml-auto btn-next" disabled="" style="height:30px;width:150px" type="button">
+    <b>
+     Next
+    </b>
+   </button>
+  </div>
+  <!-- Page type 1 end -->
+  <!-- Start Final thoughts Section-->
+  <div class="page type1 last" id="last" style="display: none;">
+   <!--<h3>Part 2/3</h3>-->
+   <div class="container-queestions">
+    <section class="question">
+     <div class="text-question" style="margin-top: 20px">
+      <h4>
+       1. Do you have any final thoughts?
+      </h4>
+      <div class="textarea-container fit" style="padding-left: 10px;">
+       <crowd-text-area class="answer_question" data-id-question="last" max-words="5" min-words="3" name="question1_3_last1" placeholder="Write here ...." rows="2" word-limit="true">
+       </crowd-text-area>
+       <div class="writing_error">
+       </div>
+      </div>
+      <h4>
+       2. What did you learn about one-sidedness?
+      </h4>
+      <div class="textarea-container fit" style="padding-left: 10px;">
+       <crowd-text-area class="answer_question" data-id-question="last" max-words="5" min-words="3" name="question1_3_last2" placeholder="Write here ...." rows="2" word-limit="true">
+       </crowd-text-area>
+       <div class="writing_error">
+       </div>
+      </div>
+     </div>
+    </section>
+   </div>
+   <div style="display: none;">
+    <crowd-text-area class="time-elapsed_last" name="time_elapsed_last">
+    </crowd-text-area>
+   </div>
+   <p>
+    <b>
+     Submit when you finish answering all the questions:
+    </b>
+   </p>
+  </div>
+  <!-- End Final thoughts Section-->
+  <div style="display: none;">
+   <crowd-text-area id="start_time" name="start_time">
+   </crowd-text-area>
+   <crowd-text-area id="submit_time" name="submit_time">
+   </crowd-text-area>
+  </div>
+ </section>
+ <div id="container-progress">
+  <progress id="progress" max="100" value="0">
+  </progress>
+  HIT completion
+  <span>
+   0%
+  </span>
+ </div>
+ <input hidden="" id="instructions_comprehension" name="instructions_comprehension" type="text" value="PASS"/>
+</crowd-form>
+<script>
+ $(document).ready(function () {
+  $("input").prop('checked', false);
+  $("select").val('');
+  $(".type1 .select-box").remove();
+  $(".type2 .select-box").remove();
+  window.startTime = moment();
+  window.progress = 0;
+  window.stepProgress = 100/($(".page").length-1);
+  $("#progress").val(progress);
+  shuffleColumns('.layout-one');
+  shuffleColumns('.layout-two');
+        //shufflePages("type1");
+        //shufflePages("type2");
+        //appendLastTypes();
+        $('#id_1 .text-question').clone().appendTo('#text-duplicated');
+
+      })
+
+     // Go to next page
+     $(document).on("click", ".btn-next", function () {
+      if($(this).hasClass("btn-example") && $("input.example_question[type^=radio]:checked").val() != "b"){
+        console.log("tas mal mijo")
+        $("#instructions_comprehension").val("FAIL");
+        $('[data-testid="crowd-submit"]').click();
+      }else {
+        $(".page").css("display", "none");
+        if ($(this).attr('id') === "button1") {
+         $(this).parent().next("#container-pages").children(".page").first().css("display", "block");
+         window.scrollTo(0, 0);
+         $("#start_time").val(moment().format('MM/DD/YYYY hh:mm:ss'));
+       } else {
+         $(this).parent().next(".page").css("display", "block");
+         window.scrollTo(0, 0);
+       }
+       checkTime($(this).parent());
+
+       var progress = $("#progress").val() + stepProgress;
+       $("#progress").val(progress);
+       $("#container-progress span").html(Math.floor(progress) + "%");
+     }
+   });
+
+
+     // Validate that all fields are filled before going to the next page
+     $(document).on("input", ".answer_question", function () {
+      var idQuestion = $(this).data("id-question");
+
+      $("#" + idQuestion + "  button").prop('disabled', true);
+
+      var isAllInpudSelected = $("#" + idQuestion + "  input[type^=radio]:checked ").length === $("#" + idQuestion + " .container").length
+
+      var isValidTextArea = true;
+      var textArea = $('#' + idQuestion).find('crowd-text-area[word-limit=true]');
+
+      if (textArea.length > 0) {
+        var thisMin = 6;
+        var removedBlanks = [];
+        textArea.each(function() {
+          var value = $(this).val();
+          removedBlanks = value ? value.split(/\s+/).filter(Boolean) : [];
+          var wordCount = removedBlanks.length;
+          if (wordCount >= thisMin) {
+            $(this).parent().children(".writing_error").text("");
+          } else {
+            $(this).parent().children(".writing_error").text("Word count under " + thisMin + ".");
+            isValidTextArea = false;
+          }
+        })
+      } else {
+        isValidTextArea = true;
+
+      }
+
+      if ($("#" + idQuestion).hasClass("type3")) {
+        var isAllSelectsSelected = true;
+        //$("select.answer_question").each(function () {
+        //  if ($(this).val() == null) {
+        //    isAllSelectsSelected = false;
+        //  }
+        //});
+        if (isAllInpudSelected && isValidTextArea && isAllSelectsSelected) {
+              //
+              $("#" + idQuestion + "  button").prop('disabled', false);
+            }
+
+          }else if($("#" + idQuestion).hasClass("type2")){
+
+            if (isAllInpudSelected ) {
+                //
+                $("#" + idQuestion + "  button").prop('disabled', false);
+              }
+
+            } else if ($("#" + idQuestion).hasClass("information")) {
+              var isSpecify = true;
+              var isAllSelectsSelected = true;
+              $("select.answer_question").each(function () {
+                if ($(this).val() == null) {
+                  isAllSelectsSelected = false;
+                }
+              });
+              if($(".gender[type^=radio]:checked").val() === "other") {
+                $("#Specify").prop('disabled', false);
+                isSpecify =  $("#Specify").val() === "" ? false : true;
+              }else {
+                $("#Specify").prop('disabled', true);
+                $("#Specify").val("");
+                isSpecify = true;
+              }
+
+              if (isAllInpudSelected && isSpecify && isAllSelectsSelected) {
+                $("#" + idQuestion + "  button").prop('disabled', false);
+
+              }
+
+            }  else {
+              if($("#" + idQuestion).hasClass("last")) {
+                if (isAllInpudSelected && isValidTextArea) {
+                  $('[data-testid="crowd-submit"]').css("display", "block");
+
+                }
+              }else {
+                if (isAllInpudSelected && isValidTextArea) {
+                  $("#" + idQuestion + "  button").prop('disabled', false);
+
+                }
+              }
+            }
+
+          });
+
+     $(document).on("click",".select-box .container .answer_question:nth-child(1)", function(){
+       $(this).parent().parent().parent().css("background","#ea9999")
+     })
+     $(document).on("click",".select-box .container .answer_question:nth-child(2)", function(){
+       $(this).parent().parent().parent().css("background","#adcea1")
+     })
+     $(document).on("click",".select-box .container .answer_question:nth-child(3)", function(){
+       $(this).parent().parent().parent().css("background","white")
+     })
+     $(document).on("click",".select-box .container .answer_question:nth-child(4)", function(){
+       $(this).parent().parent().parent().css("background","white")
+     })
+     // Sets elapsed time for the last page
+     $(document).on("submit", "crowd-form", function () {
+      $(".time-elapsed_last").val(diff(startTime, moment()));
+      $("#submit_time").val(moment().format('MM/DD/YYYY hh:mm:ss'));
+    })
+
+     // Helper for shuffle arrays
+     function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+       const j = Math.floor(Math.random() * (i + 1));
+       [array[i], array[j]] = [array[j], array[i]];
+     }
+   }
+   
+     // Shuffle pages/questions
+     function shufflePages(type) {
+      const pages = $("." + type);
+      shuffleArray(pages);
+      $("#container-pages").remove("." + type);
+      $("#container-pages").append(pages);
+    }
+
+
+     // Shuffle paragraphs
+     function shuffleColumns(column) {
+      $(column).each(function () {
+       const elements = $(this).find(".container-box");
+       shuffleArray(elements)
+       $(this).remove(".container-box")
+       $(this).append(elements)
+     })
+    }
+
+     // Sets the time spend in page
+     function checkTime(page) {
+      page.find(".time-elapsed").val(diff(startTime, moment()));
+      startTime = moment();
+    }
+
+     // Helper to get differences between times
+     var diff = (start, end) => moment(end).diff(moment(start), 'seconds');
+     //Append statics types
+     function appendLastTypes() {
+      var lastType = $("#last");
+      var type3 = $(".type3");
+      $("#container-pages").remove("#last");
+      $("#container-pages").remove(".type3");
+      $("#container-pages").append(type3);
+      $("#container-pages").append(lastType);
+    }
+</script>

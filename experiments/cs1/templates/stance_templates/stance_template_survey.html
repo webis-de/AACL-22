@@ -1,0 +1,901 @@
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<style>
+   body {
+   width: calc(100vw - 80px);
+   margin: 40px auto 0;
+   }
+   .row {
+   display: flex;
+   }
+   .row h3 {
+   text-align: center;
+   border-bottom: solid;
+   width: 100%;
+   margin: 0;
+   padding: .5rem 0;
+   border-width: 1px
+   }
+   .row .layout-one div,
+   .row .layout-two div {
+   padding: .5rem;
+   }
+   .layout-one,
+   .layout-two {
+   border: .1rem solid #000;
+   border: solid;
+   border-width: 1px;
+   flex: 1;
+   }
+   .layout-one {
+   margin-right: 1rem;
+   }
+   .layout-two {
+   margin-left: 1rem;
+   }
+   #container-pages {
+   padding-bottom: 40px;
+   }
+   button {
+   margin-top: 20px;
+   }
+   button:disabled {
+   opacity: .6;
+   margin-top: 20px;
+   }
+   h1 {
+   text-align: center;
+   }
+   [data-testid="crowd-submit"] {
+   display: none;
+   }
+   .border {
+   border: 2px blue dashed;
+   }
+   .mr-0 {
+   margin-right: 0;
+   }
+   .ml-auto {
+   margin-left: auto;
+   font-size: 16px;
+   }
+   .d-block {
+   display: block;
+   }
+   input[type=radio] {
+   margin: 15px;
+   padding: 0;
+   }
+   .details,
+   .summary {
+   margin-left: 10px;
+   color: black;
+   background: #D3D3D3;
+   display: True;
+   }
+   h4 {
+   margin-bottom: 0;
+   }
+   .pad-left {
+   padding-left: 50px;
+   }
+   .writing_error {
+   color: red;
+   }
+   [id^=writing] {
+   border-bottom: 1px solid grey;
+   margin-bottom: 20px;
+   padding-bottom: 20px;
+   }
+   crowd-text-area {
+   width: 100%;
+   margin-top: 4px;
+   }
+   .container-box {
+   padding-top: 5px !important;
+   }
+   .type3 .container-box {
+   padding-top: 20px !important;
+   border: 1px solid black;
+   margin: 22px 10px;
+   position: relative;
+   }
+   .container-box p {
+   margin: 0;
+   }
+   progress {
+     border-radius: 7px; 
+     width: 300px;
+     height: 15px;
+     box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+     margin-right: 20px;
+   }
+   progress::-webkit-progress-bar {
+     border-radius: 7px;
+   }
+   progress::-webkit-progress-value {
+     background-color: orange;
+     border-radius: 7px;
+   }
+   progress::-moz-progress-bar {
+     background-color: orange;
+     border-radius: 7px;
+   }
+   #container-progress {
+      text-align: center;  
+      padding-bottom: 25px;
+   }
+</style>
+<crowd-form answer-format="flatten-objects">
+   <!-- Page 1 start -->
+   <div id="Page1" class="page">
+      <h2>One-sidedness in Argumentation Survey</h2>
+      <h5>About this HIT:</h5>
+      <ol>
+         <li><b>Context</b></li>
+         <p>An argument wants to convince you of something. But not all arguments are the same. Some are more one-sided than others in terms of how they try to convince you.</p>
+         <li><b>Objective</b></li>
+         <p><b>Given two different texts (A and B) determine which one is more one-sided</b>. Completely read each line of arguments and think about which one is more biased than the other. (Note: it is possible that both are equally biased or unbiased).</p>
+         <li><b>Disclaimer</b></li>
+         <p><b>You will not be compensated if:</b></p>
+         <ol>
+            <li>You fail reading all the content, the system will detect if you don't read all the content</li>
+            <li>You don't answer all the questions.</li>
+            <li><b>You participated more than one time. You can answer this survey only one time.</b> The focus of the experiment
+               is to get different participants. Therefore, <b>we need unique participants</b>
+               for this study. <b>The system will reject your work if it finds that
+               you already participated</b>. <b>So please to avoid any impact on your approval
+               rating, answer this survey only once</b>.
+            </li>
+         </ol>
+         <br>
+         <li><b>How to answer this survey?</b></li>
+         <p> </p>
+         <ol>
+            <li>The survey is comformed of six parts you will be given several instance topics with two different texts
+               (A and B, left and right side) with several paragraphs each one.
+            </li>
+            <li>Read completely both texts and then proceed to answer all the questions. You will not be allowed to continue if you do not answer all the questions. 
+               Your participation will not be approved if you dont read all texts, paragraphs and questions.
+               <b>Your work will be rejected if you answer or participate in this survey more than one time.</b>
+            </li>
+            <li><b>Make sure you read all the texts, and associated paragraphs</b>, so you can answer the the questions.</li>
+         </ol>
+      </ol>
+      <div style="display: none;">
+         <crowd-text-area class="time-elapsed" name="time_elapsed_instructions"></crowd-text-area>
+      </div>
+      <button type="button" style="height:30px;width:100px" class="d-block mr-0 ml-auto btn-next " id="button1" >start</button>
+   </div>
+   <!-- Page 1 end -->
+   <section id="container-pages">
+      <!-- Page type 0 start -->
+      <div class="page type1" style="display: none;" id="agree">
+         <!--<h3>Part 2/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <strong>What is your stance regarding the following topics:</strong>
+               <div class="text-question" style="margin-top: 20px">
+                  {{arg_data_0}}
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_personal_stance"></crowd-text-area>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next" disabled disabled><b>Next</b></button>
+      </div>
+      <!-- Page type 0 end -->
+      <!-- Page type 1 start -->
+      {% for e in arg_data_1 %}
+      <div class="page type1" style="display: none;" id="id_{{e[0]}}">
+         <!--<h3>Part 2/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{e[1]}} </h1>
+               <div class="text-question">
+                  {{e[2]}}
+               </div>
+               <div class="container">
+                  <h4>1. Which text is more one-sided?</h4>
+                  <!-- question_part_question_arg -->
+                  <input type="radio" value="arg_a" name="question1_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="arg_b" name="question1_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="none" name="question1_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question1_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Very sure</input>
+                  <input type="radio" value="val2" name="question1_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question1_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Unsure</input>
+                  <i></i>
+               </div>
+               <h4>3. Please explain your decision in Question 1. Why do you consider the selected text more one-sided (explain your decision in more than 6 words)?</h4>
+               <div class="textarea-container fit" style="padding-left: 10px;">
+                  <crowd-text-area name="question1_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                  <div class="writing_error"></div>
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_{{e[0]}}"></crowd-text-area>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next" disabled disabled><b>Next</b></button>
+      </div>
+      {% endfor %}
+      <!-- Page type 1 end -->
+      <!-- Page type info start -->
+      <div class="page type1 information" style="display: none;" id="information">
+         <!--<h3>Part 2/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <strong>Please fill the below form with your profile information:</strong>
+               <div class="text-question" style="margin-top: 20px">
+                  <div class="container">
+                     <h4>1. Gender</h4>
+                     <div  style="margin: 15px">
+                        <input type="radio" value="F" name="information_gender" class="answer_question gender" data-id-question="information" required >F</input>
+                        <input type="radio" value="M" name="information_gender" class="answer_question gender" data-id-question="information" required >M</input>
+                        <input type="radio" value="other" name="information_gender" class="answer_question gender" id="other_op" data-id-question="information" required >Other</input>
+                        <input type="text" value="" name="information_gender_specify" class="answer_question" id="Specify" data-id-question="information" required placeholder="Specify" disabled=""></input>
+                     </div>
+                  </div>
+                  <div class="">
+                     <h4>2. Age group</h4>
+                     <div  style="margin: 15px">
+                        <select name="information_age_group" class="answer_question" data-id-question="information">
+                           <option value="" selected disabled hidden>-- select one --</option>
+                           <option value="18">18</option>
+                           <option value="19">19</option>
+                           <option value="20">20</option>
+                           <option value="21">21</option>
+                           <option value="22">22</option>
+                           <option value="23">23</option>
+                           <option value="24">24</option>
+                           <option value="25">25</option>
+                           <option value="26">26</option>
+                           <option value="27">27</option>
+                           <option value="29">29</option>
+                           <option value="30">30</option>
+                           <option value="31">31</option>
+                           <option value="32">32</option>
+                           <option value="33">33</option>
+                           <option value="34">34</option>
+                           <option value="35">35</option>
+                           <option value="36">36</option>
+                           <option value="37">37</option>
+                           <option value="38">38</option>
+                           <option value="39">39</option>
+                           <option value="40">40</option>
+                           <option value="41">41</option>
+                           <option value="42">42</option>
+                           <option value="43">43</option>
+                           <option value="44">44</option>
+                           <option value="45">45</option>
+                           <option value="46">46</option>
+                           <option value="47">47</option>
+                           <option value="48">48</option>
+                           <option value="49">49</option>
+                           <option value="50">50</option>
+                           <option value="51">51</option>
+                           <option value="52">52</option>
+                           <option value="53">53</option>
+                           <option value="54">54</option>
+                           <option value="55">55</option>
+                           <option value="56">56</option>
+                           <option value="57">57</option>
+                           <option value="58">58</option>
+                           <option value="59">59</option>
+                           <option value="60">60</option>
+                           <option value="61">61</option>
+                           <option value="62">62</option>
+                           <option value="63">63</option>
+                           <option value="64">64</option>
+                           <option value="65">65</option>
+                           <option value="66">66</option>
+                           <option value="67">67</option>
+                           <option value="68">68</option>
+                           <option value="69">69</option>
+                           <option value="70">70</option>
+                           <option value="71">71</option>
+                           <option value="72">72</option>
+                           <option value="73">73</option>
+                           <option value="74">74</option>
+                           <option value="75">75</option>
+                           <option value="76">76</option>
+                           <option value="77">77</option>
+                           <option value="78">78</option>
+                           <option value="79">79</option>
+                           <option value="80">80</option>
+                           <option value="81">81</option>
+                           <option value="82">82</option>
+                           <option value="83">83</option>
+                           <option value="84">84</option>
+                           <option value="85">85</option>
+                           <option value="86">86</option>
+                           <option value="87">87</option>
+                           <option value="88">88</option>
+                           <option value="89">89</option>
+                           <option value="90">90</option>
+                           <option value="91">91</option>
+                           <option value="92">92</option>
+                           <option value="93">93</option>
+                           <option value="94">94</option>
+                           <option value="95">95</option>
+                           <option value="96">96</option>
+                           <option value="97">97</option>
+                           <option value="98">98</option>
+                           <option value="99">99</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="">
+                     <h4>3. Nationality</h4>
+                     <div  style="margin: 15px">
+                        <select name="information_nationality" class="answer_question" data-id-question="information">
+                           <option value="" selected disabled hidden>-- select one --</option>
+                           <option value="afghan">Afghan</option>
+                           <option value="albanian">Albanian</option>
+                           <option value="algerian">Algerian</option>
+                           <option value="american">American</option>
+                           <option value="andorran">Andorran</option>
+                           <option value="angolan">Angolan</option>
+                           <option value="antiguans">Antiguans</option>
+                           <option value="argentinean">Argentinean</option>
+                           <option value="armenian">Armenian</option>
+                           <option value="australian">Australian</option>
+                           <option value="austrian">Austrian</option>
+                           <option value="azerbaijani">Azerbaijani</option>
+                           <option value="bahamian">Bahamian</option>
+                           <option value="bahraini">Bahraini</option>
+                           <option value="bangladeshi">Bangladeshi</option>
+                           <option value="barbadian">Barbadian</option>
+                           <option value="barbudans">Barbudans</option>
+                           <option value="batswana">Batswana</option>
+                           <option value="belarusian">Belarusian</option>
+                           <option value="belgian">Belgian</option>
+                           <option value="belizean">Belizean</option>
+                           <option value="beninese">Beninese</option>
+                           <option value="bhutanese">Bhutanese</option>
+                           <option value="bolivian">Bolivian</option>
+                           <option value="bosnian">Bosnian</option>
+                           <option value="brazilian">Brazilian</option>
+                           <option value="british">British</option>
+                           <option value="bruneian">Bruneian</option>
+                           <option value="bulgarian">Bulgarian</option>
+                           <option value="burkinabe">Burkinabe</option>
+                           <option value="burmese">Burmese</option>
+                           <option value="burundian">Burundian</option>
+                           <option value="cambodian">Cambodian</option>
+                           <option value="cameroonian">Cameroonian</option>
+                           <option value="canadian">Canadian</option>
+                           <option value="cape verdean">Cape Verdean</option>
+                           <option value="central african">Central African</option>
+                           <option value="chadian">Chadian</option>
+                           <option value="chilean">Chilean</option>
+                           <option value="chinese">Chinese</option>
+                           <option value="colombian">Colombian</option>
+                           <option value="comoran">Comoran</option>
+                           <option value="congolese">Congolese</option>
+                           <option value="costa rican">Costa Rican</option>
+                           <option value="croatian">Croatian</option>
+                           <option value="cuban">Cuban</option>
+                           <option value="cypriot">Cypriot</option>
+                           <option value="czech">Czech</option>
+                           <option value="danish">Danish</option>
+                           <option value="djibouti">Djibouti</option>
+                           <option value="dominican">Dominican</option>
+                           <option value="dutch">Dutch</option>
+                           <option value="east timorese">East Timorese</option>
+                           <option value="ecuadorean">Ecuadorean</option>
+                           <option value="egyptian">Egyptian</option>
+                           <option value="emirian">Emirian</option>
+                           <option value="equatorial guinean">Equatorial Guinean</option>
+                           <option value="eritrean">Eritrean</option>
+                           <option value="estonian">Estonian</option>
+                           <option value="ethiopian">Ethiopian</option>
+                           <option value="fijian">Fijian</option>
+                           <option value="filipino">Filipino</option>
+                           <option value="finnish">Finnish</option>
+                           <option value="french">French</option>
+                           <option value="gabonese">Gabonese</option>
+                           <option value="gambian">Gambian</option>
+                           <option value="georgian">Georgian</option>
+                           <option value="german">German</option>
+                           <option value="ghanaian">Ghanaian</option>
+                           <option value="greek">Greek</option>
+                           <option value="grenadian">Grenadian</option>
+                           <option value="guatemalan">Guatemalan</option>
+                           <option value="guinea-bissauan">Guinea-Bissauan</option>
+                           <option value="guinean">Guinean</option>
+                           <option value="guyanese">Guyanese</option>
+                           <option value="haitian">Haitian</option>
+                           <option value="herzegovinian">Herzegovinian</option>
+                           <option value="honduran">Honduran</option>
+                           <option value="hungarian">Hungarian</option>
+                           <option value="icelander">Icelander</option>
+                           <option value="indian">Indian</option>
+                           <option value="indonesian">Indonesian</option>
+                           <option value="iranian">Iranian</option>
+                           <option value="iraqi">Iraqi</option>
+                           <option value="irish">Irish</option>
+                           <option value="israeli">Israeli</option>
+                           <option value="italian">Italian</option>
+                           <option value="ivorian">Ivorian</option>
+                           <option value="jamaican">Jamaican</option>
+                           <option value="japanese">Japanese</option>
+                           <option value="jordanian">Jordanian</option>
+                           <option value="kazakhstani">Kazakhstani</option>
+                           <option value="kenyan">Kenyan</option>
+                           <option value="kittian and nevisian">Kittian and Nevisian</option>
+                           <option value="kuwaiti">Kuwaiti</option>
+                           <option value="kyrgyz">Kyrgyz</option>
+                           <option value="laotian">Laotian</option>
+                           <option value="latvian">Latvian</option>
+                           <option value="lebanese">Lebanese</option>
+                           <option value="liberian">Liberian</option>
+                           <option value="libyan">Libyan</option>
+                           <option value="liechtensteiner">Liechtensteiner</option>
+                           <option value="lithuanian">Lithuanian</option>
+                           <option value="luxembourger">Luxembourger</option>
+                           <option value="macedonian">Macedonian</option>
+                           <option value="malagasy">Malagasy</option>
+                           <option value="malawian">Malawian</option>
+                           <option value="malaysian">Malaysian</option>
+                           <option value="maldivan">Maldivan</option>
+                           <option value="malian">Malian</option>
+                           <option value="maltese">Maltese</option>
+                           <option value="marshallese">Marshallese</option>
+                           <option value="mauritanian">Mauritanian</option>
+                           <option value="mauritian">Mauritian</option>
+                           <option value="mexican">Mexican</option>
+                           <option value="micronesian">Micronesian</option>
+                           <option value="moldovan">Moldovan</option>
+                           <option value="monacan">Monacan</option>
+                           <option value="mongolian">Mongolian</option>
+                           <option value="moroccan">Moroccan</option>
+                           <option value="mosotho">Mosotho</option>
+                           <option value="motswana">Motswana</option>
+                           <option value="mozambican">Mozambican</option>
+                           <option value="namibian">Namibian</option>
+                           <option value="nauruan">Nauruan</option>
+                           <option value="nepalese">Nepalese</option>
+                           <option value="new zealander">New Zealander</option>
+                           <option value="ni-vanuatu">Ni-Vanuatu</option>
+                           <option value="nicaraguan">Nicaraguan</option>
+                           <option value="nigerien">Nigerien</option>
+                           <option value="north korean">North Korean</option>
+                           <option value="northern irish">Northern Irish</option>
+                           <option value="norwegian">Norwegian</option>
+                           <option value="omani">Omani</option>
+                           <option value="pakistani">Pakistani</option>
+                           <option value="palauan">Palauan</option>
+                           <option value="panamanian">Panamanian</option>
+                           <option value="papua new guinean">Papua New Guinean</option>
+                           <option value="paraguayan">Paraguayan</option>
+                           <option value="peruvian">Peruvian</option>
+                           <option value="polish">Polish</option>
+                           <option value="portuguese">Portuguese</option>
+                           <option value="qatari">Qatari</option>
+                           <option value="romanian">Romanian</option>
+                           <option value="russian">Russian</option>
+                           <option value="rwandan">Rwandan</option>
+                           <option value="saint lucian">Saint Lucian</option>
+                           <option value="salvadoran">Salvadoran</option>
+                           <option value="samoan">Samoan</option>
+                           <option value="san marinese">San Marinese</option>
+                           <option value="sao tomean">Sao Tomean</option>
+                           <option value="saudi">Saudi</option>
+                           <option value="scottish">Scottish</option>
+                           <option value="senegalese">Senegalese</option>
+                           <option value="serbian">Serbian</option>
+                           <option value="seychellois">Seychellois</option>
+                           <option value="sierra leonean">Sierra Leonean</option>
+                           <option value="singaporean">Singaporean</option>
+                           <option value="slovakian">Slovakian</option>
+                           <option value="slovenian">Slovenian</option>
+                           <option value="solomon islander">Solomon Islander</option>
+                           <option value="somali">Somali</option>
+                           <option value="south african">South African</option>
+                           <option value="south korean">South Korean</option>
+                           <option value="spanish">Spanish</option>
+                           <option value="sri lankan">Sri Lankan</option>
+                           <option value="sudanese">Sudanese</option>
+                           <option value="surinamer">Surinamer</option>
+                           <option value="swazi">Swazi</option>
+                           <option value="swedish">Swedish</option>
+                           <option value="swiss">Swiss</option>
+                           <option value="syrian">Syrian</option>
+                           <option value="taiwanese">Taiwanese</option>
+                           <option value="tajik">Tajik</option>
+                           <option value="tanzanian">Tanzanian</option>
+                           <option value="thai">Thai</option>
+                           <option value="togolese">Togolese</option>
+                           <option value="tongan">Tongan</option>
+                           <option value="trinidadian or tobagonian">Trinidadian or Tobagonian</option>
+                           <option value="tunisian">Tunisian</option>
+                           <option value="turkish">Turkish</option>
+                           <option value="tuvaluan">Tuvaluan</option>
+                           <option value="ugandan">Ugandan</option>
+                           <option value="ukrainian">Ukrainian</option>
+                           <option value="uruguayan">Uruguayan</option>
+                           <option value="uzbekistani">Uzbekistani</option>
+                           <option value="venezuelan">Venezuelan</option>
+                           <option value="vietnamese">Vietnamese</option>
+                           <option value="welsh">Welsh</option>
+                           <option value="yemenite">Yemenite</option>
+                           <option value="zambian">Zambian</option>
+                           <option value="zimbabwean">Zimbabwean</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="container">
+                     <h4>4. English skills</h4>
+                     <div  style="margin: 15px">
+                        <input type="radio" value="Low" name="information_english_skills" class="answer_question" data-id-question="information" required >Low</input>
+                        <input type="radio" value="medium" name="information_english_skills" class="answer_question" data-id-question="information" required >Medium</input>
+                        <input type="radio" value="high" name="information_english_skills" class="answer_question" data-id-question="information" required >High</input>
+                     </div>
+                  </div>
+                  <div class="container">
+                     <h4>6. Education level</h4>
+                     <div  style="margin: 15px">
+                        <input type="radio" value="basic" name="information_education_level" class="answer_question" data-id-question="information" required >Basic</input>
+                        <input type="radio" value="bachelors" name="information_education_level" class="answer_question" data-id-question="information" required >Bachelor's</input>
+                        <input type="radio" value="postgraduate" name="information_education_level" class="answer_question" data-id-question="information" required >Postgraduate</input>
+                     </div>
+                  </div>
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_profile"></crowd-text-area>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next" disabled disabled><b>Next</b></button>
+      </div>
+      <!-- Page type info end -->
+      <!-- Page type 2 start -->
+      {% for e in arg_data_2 %}
+      <div class="page type2" style="display: none;" id="id_{{e[0]}}">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{e[1]}} </h1>
+               {{e[2]}}
+               <div class="container">
+                  <h4>1. Which text has more pro stances (paragraphs that agree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question2_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="val2" name="question2_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="val3" name="question2_1_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None, both have the same amount of pro paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. Which text has more con stances (paragraphs that disagree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question2_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="val2" name="question2_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="val3" name="question2_2_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None, both have the same amount of con paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>3. Which text is more one-sided?</h4>
+                  <input type="radio" value="val1" name="question2_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >A</input>
+                  <input type="radio" value="val2" name="question2_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >B</input>
+                  <input type="radio" value="val3" name="question2_3_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>4. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question2_4_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Very sure</input>
+                  <input type="radio" value="val2" name="question2_4_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question2_4_{{e[0]}}" class="answer_question" data-id-question="id_{{e[0]}}" required >Unsure</input>
+                  <i></i>
+               </div>
+               <br>
+               <hr>
+            </section>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next"  disabled><b>Next</b></button>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_{{e[0]}}"></crowd-text-area>
+         </div>
+      </div>
+      {% endfor %}
+      <!-- Page type 2 end -->
+      <!-- Page type 3 start -->
+      <div class="page type3" style="display: none;" id="type3">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h5>Instructions:
+                  <br>
+                  <br>
+                  Below, label the argument bounded in a box by selecting the stance option that, in your opinion, best represents the paragraph (you will not be able to continue if you dont select a label option) ⬇️
+               </h5>
+               <br>
+               <h1> {{arg_data_3[1]}} </h1>
+               {{arg_data_3[2]}}
+               <!--<div class="container">
+                  <h4>1. Which text has more pro stances (paragraphs that agree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question3_1_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >A</input>
+                  <input type="radio" value="val2" name="question3_1_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >B</input>
+                  <input type="radio" value="val3" name="question3_1_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >None, both have the same amount of pro paragraphs</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. Which text has more con stances (paragraphs that disagree with the topic)?</h4>
+                  <input type="radio" value="val1" name="question3_2_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >A</input>
+                  <input type="radio" value="val2" name="question3_2_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >B</input>
+                  <input type="radio" value="val3" name="question3_2_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >None, both have the same amount of con paragraphs</input>
+                  <i></i>
+               </div>-->
+               <div class="container">
+                  <h4>1. Which text is more one-sided?</h4>
+                  <input type="radio" value="val1" name="question3_3_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >A</input>
+                  <input type="radio" value="val2" name="question3_3_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >B</input>
+                  <input type="radio" value="val3" name="question3_3_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >None</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question3_4_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >Very sure</input>
+                  <input type="radio" value="val2" name="question3_4_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question3_4_{{arg_data_3[0]}}" class="answer_question" data-id-question="type3" required >Unsure</input>
+                  <i></i>
+               </div>
+               <br>
+               <hr>
+            </section>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next"  disabled><b>Next</b></button>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed" name="time_elapsed_id_{{arg_data_3[0]}}"></crowd-text-area>
+         </div>
+      </div>
+      <div class="page type1" style="display: none;" id="duplicated">
+         <!--<h3>Part 3/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <h1> {{arg_data_1[0][1]}} </h1>
+               <div class="text-question" id="text-duplicated">
+                  <!--{{arg_data_1[0][2]}}-->
+               </div>
+               <div class="container">
+                  <h4>1. We believe that A is more one-sided, are you agree?</h4>
+                  <!-- question_part_question_arg -->
+                  <input type="radio" value="yes" name="question1_1_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" required >Yes</input>
+                  <input type="radio" value="no" name="question1_1_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" required >No</input>
+                  <input type="radio" value="none" name="question1_1_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" required >Unsure</input>
+                  <i></i>
+               </div>
+               <div class="container">
+                  <h4>2. How sure you are?</h4>
+                  <input type="radio" value="val1" name="question1_2_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" required >Very sure</input>
+                  <input type="radio" value="val2" name="question1_2_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" required >Reasonable sure</input>
+                  <input type="radio" value="val3" name="question1_2_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" required >Unsure</input>
+                  <i></i>
+               </div>
+               <h4>3. Please explain your decision in Question 1. Why do you consider the selected text more one-sided (explain your decision in more than 6 words)?
+               </h4>
+               <div class="textarea-container fit" style="padding-left: 10px;">
+                  <crowd-text-area name="question1_3_repeatedLabeled{{arg_data_1[0][0]}}" class="answer_question" data-id-question="duplicated" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                  <div class="writing_error"></div>
+               </div>
+            </section>
+         </div>
+         <button type="button" style="height:30px;width:150px" class="d-block mr-0 ml-auto btn-next" disabled disabled><b>Next</b></button>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsedt" name="time_elapsed_duplicated"></crowd-text-area>
+         </div>
+      </div>
+      <div class="page type1 last" style="display: none;" id="last">
+         <!--<h3>Part 2/3</h3>-->
+         <div class="container-queestions">
+            <section class="question" >
+               <div class="text-question" style="margin-top: 20px">
+                  <h4>1. Do you have any final thoughts?</h4>
+                  <div class="textarea-container fit" style="padding-left: 10px;">
+                     <crowd-text-area name="question1_3_last1" class="answer_question" data-id-question="last" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                     <div class="writing_error"></div>
+                  </div>
+                  <h4>2. What did you learn about one-sidedness?</h4>
+                  <div class="textarea-container fit" style="padding-left: 10px;">
+                     <crowd-text-area name="question1_3_last2" class="answer_question" data-id-question="last" word-limit="true" max-words="5" min-words="3" rows="2" placeholder="Write here ...."></crowd-text-area>
+                     <div class="writing_error"></div>
+                  </div>
+               </div>
+            </section>
+         </div>
+         <div style="display: none;">
+            <crowd-text-area class="time-elapsed_last" name="time_elapsed_last"></crowd-text-area>
+         </div>
+         <p><b>Submit when you finish answering all the questions ⤵️</b></p>
+      </div>
+      <div style="display: none;">
+         <crowd-text-area id="start_time" name="start_time"></crowd-text-area>
+         <crowd-text-area id="submit_time" name="submit_time"></crowd-text-area>
+      </div>
+   </section>
+   <div id=container-progress>
+      <progress id="progress" value="0" max="100"></progress>HIT completion <span>0%</span>
+   </div>
+</crowd-form>
+<script>
+   $(document).ready(function () {
+    $("input").prop('checked', false);
+    $("select").val('');
+    $(".type1 .select-box").remove();
+    $(".type2 .select-box").remove();
+    window.startTime = moment();
+    window.progress = 0;
+    window.stepProgress = 100/($(".page").length-1);
+    $("#progress").val(progress);
+    shuffleColumns('.layout-one');
+    shuffleColumns('.layout-two');
+        //shufflePages("type1");
+        //shufflePages("type2");
+        //appendLastTypes();
+        $('#id_1 .text-question').clone().appendTo('#text-duplicated');
+   
+      })
+   
+     // Go to next page
+     $(document).on("click", ".btn-next", function () {
+      $(".page").css("display", "none");
+      if ($(this).attr('id') === "button1") {
+       $(this).parent().next("#container-pages").children(".page").first().css("display", "block");
+       window.scrollTo(0, 0);
+       $("#start_time").val(moment().format('MM/DD/YYYY hh:mm:ss'));
+     } else {
+       $(this).parent().next(".page").css("display", "block");
+       window.scrollTo(0, 0);
+     }
+     checkTime($(this).parent());
+
+     var progress = $("#progress").val() + stepProgress;
+     $("#progress").val(progress);
+     $("#container-progress span").html(Math.floor(progress) + "%");
+   
+   });
+   
+   
+     // Validate that all fields are filled before going to the next page
+     $(document).on("input", ".answer_question", function () {
+      var idQuestion = $(this).data("id-question");
+   
+      $("#" + idQuestion + "  button").prop('disabled', true);
+   
+      var isAllInpudSelected = $("#" + idQuestion + "  input[type^=radio]:checked ").length === $("#" + idQuestion + " .container").length
+   
+      var isValidTextArea = true;
+      var textArea = $('#' + idQuestion).find('crowd-text-area[word-limit=true]');
+   
+      if (textArea.length > 0) {
+        var thisMin = 6;
+        var removedBlanks = [];
+        textArea.each(function() {
+          var value = $(this).val();
+          removedBlanks = value ? value.split(/\s+/).filter(Boolean) : [];
+          var wordCount = removedBlanks.length;
+          if (wordCount >= thisMin) {
+            $(this).parent().children(".writing_error").text("");
+          } else {
+            $(this).parent().children(".writing_error").text("Word count under " + thisMin + ".");
+            isValidTextArea = false;
+          }
+        })
+      } else {
+        isValidTextArea = true;
+   
+      }
+   
+      if ($("#" + idQuestion).hasClass("type3")) {
+        var isAllSelectsSelected = true;
+        //$("select.answer_question").each(function () {
+        //  if ($(this).val() == null) {
+        //    isAllSelectsSelected = false;
+        //  }
+        //});
+        if (isAllInpudSelected && isValidTextArea && isAllSelectsSelected) {
+              //
+              $("#" + idQuestion + "  button").prop('disabled', false);
+            }
+   
+          }else if($("#" + idQuestion).hasClass("type2")){
+   
+            if (isAllInpudSelected ) {
+                //
+                $("#" + idQuestion + "  button").prop('disabled', false);
+              }
+   
+            } else if ($("#" + idQuestion).hasClass("information")) {
+              var isSpecify = true;
+              var isAllSelectsSelected = true;
+              $("select.answer_question").each(function () {
+                if ($(this).val() == null) {
+                  isAllSelectsSelected = false;
+                }
+              });
+              if($(".gender[type^=radio]:checked").val() === "other") {
+                $("#Specify").prop('disabled', false);
+                isSpecify =  $("#Specify").val() === "" ? false : true;
+              }else {
+                $("#Specify").prop('disabled', true);
+                $("#Specify").val("");
+                isSpecify = true;
+              }
+   
+              if (isAllInpudSelected && isSpecify && isAllSelectsSelected) {
+                $("#" + idQuestion + "  button").prop('disabled', false);
+   
+              }
+   
+            }  else {
+              if($("#" + idQuestion).hasClass("last")) {
+                if (isAllInpudSelected && isValidTextArea) {
+                  $('[data-testid="crowd-submit"]').css("display", "block");
+   
+                }
+              }else {
+                if (isAllInpudSelected && isValidTextArea) {
+                  $("#" + idQuestion + "  button").prop('disabled', false);
+   
+                }
+              }
+            }
+   
+          });
+   
+     // Sets elapsed time for the last page
+     $(document).on("submit", "crowd-form", function () {
+      $(".time-elapsed_last").val(diff(startTime, moment()));
+      $("#submit_time").val(moment().format('MM/DD/YYYY hh:mm:ss'));
+    })
+   
+     // Helper for shuffle arrays
+     function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+       const j = Math.floor(Math.random() * (i + 1));
+       [array[i], array[j]] = [array[j], array[i]];
+     }
+   }
+   
+     // Shuffle pages/questions
+     function shufflePages(type) {
+      const pages = $("." + type);
+      shuffleArray(pages);
+      $("#container-pages").remove("." + type);
+      $("#container-pages").append(pages);
+    }
+   
+   
+     // Shuffle paragraphs
+     function shuffleColumns(column) {
+      $(column).each(function () {
+       const elements = $(this).find(".container-box");
+       shuffleArray(elements)
+       $(this).remove(".container-box")
+       $(this).append(elements)
+     })
+    }
+   
+     // Sets the time spend in page
+     function checkTime(page) {
+      page.find(".time-elapsed").val(diff(startTime, moment()));
+      startTime = moment();
+    }
+   
+     // Helper to get differences between times
+     var diff = (start, end) => moment(end).diff(moment(start), 'seconds');
+     //Append statics types
+     function appendLastTypes() {
+      var lastType = $("#last");
+      var type3 = $(".type3");
+      $("#container-pages").remove("#last");
+      $("#container-pages").remove(".type3");
+      $("#container-pages").append(type3);
+      $("#container-pages").append(lastType);
+    }
+   
+</script>
