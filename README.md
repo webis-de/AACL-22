@@ -30,7 +30,7 @@ Most relevant natural language processing research treats bias as an absolute co
 
 1. Generate the HIT templates with `stance_survey_generator` file in `experiments` directory.
 
-2. For running the analysis use the Jupyer notebooks in the `analysis` directory ([Table 1c](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/labeling_accuracies.ipynb), [Table 2a](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/accs_df.ipynb) , [Figure 2b](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/setups.ipynb), [Table 2c](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/accs_analysis.ipynb), [Table 3](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/competence_filtering.ipynb), [Lexical strength analysis](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/lex_strength_analysis.ipynb))
+2. For running the analysis use the Jupyer notebooks in the `analysis` directory ([Table 1c](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/blob/main/analysis/labeling_accuracies.ipynb), [Table 2a](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/blob/main/analysis/accs_df.ipynb) , [Figure 2b](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/blob/main/analysis/setups.ipynb), [Table 2c](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/blob/main/analysis/accs_analysis.ipynb), [Table 3](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/analysis/competence_filtering.ipynb), [Lexical strength analysis](https://github.com/webis-de/aacl-ijcnlp-22-differential-bias/blob/main/analysis/lex_strength_analysis.ipynb))
 
 ### Reference
 
